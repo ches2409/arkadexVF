@@ -44,13 +44,13 @@ Arkadex es un proyecto educativo que consiste en una plataforma web desarrollada
 
 4. Ejecutar la aplicación:
    ```
-   python app.py
+   python main.py
    ```
 
 5. Abrir un navegador web y acceder a `http://localhost:5000`
 
 ## Estructura del Proyecto
-- `app.py`: Punto de entrada principal de la aplicación Flask
+- `main.py`: Punto de entrada principal de la aplicación Flask
 - `templates/`: Directorio para archivos HTML
 - `static/`: Directorio para archivos CSS, JavaScript e imágenes
 - `models/`: Definiciones de modelos de datos
