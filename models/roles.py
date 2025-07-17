@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db import Base
 
@@ -12,9 +12,18 @@ class Rol(Base):
         'sqlite_autoincrement': True,
         'comment': 'Tabla que almacena los Roles de los participantes',
     }
+
     id_rol:Mapped[int]=mapped_column(Integer, primary_key=True)
-    nombre_rol:String=mapped_column(String(50), nullable=False)
-    descripcion_rol:String=mapped_column(String(100), nullable=False)
+    nombre_rol:Mapped[str]=mapped_column(String(50), nullable=False)
+    descripcion_rol:Mapped[str]=mapped_column(String(100))
+
+    # Relacion inversa con usuarios
+    rol:Mapped[list["Rol"]]=relationship(
+        "Rol",
+        back_populates="usuarios",
+
+    )
+
 
     def __init__(self,nombre_rol,descripcion_rol):
         self.nombre_rol = nombre_rol

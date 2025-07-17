@@ -1,4 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
+
+from db import init_db
+from models import roles
 
 import db
 
@@ -7,11 +10,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():  # put application's code here
-    return 'Hello World!'
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
-    db.Base.metadata.drop_all(bind=db.engine,checkfirst=True)
-    db.Base.metadata.create_all(bind=db.engine)
+    init_db()
     app.run(debug=True)
 

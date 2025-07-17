@@ -1,7 +1,37 @@
+from sqlalchemy import Integer, String, DateTime, func, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from db import Base
 
 
 class Usuario(Base):
+
+    __tablename__ = 'usuarios'
+    __mapper_args__ = {
+        'sqlite_autoincrement': True,
+        'comment':'Tabla de usuarios'
+    }
+
+    id_usuario:Mapped[int] = mapped_column(Integer, primary_key=True)
+    nombre_usuario:Mapped[str] = mapped_column(String(50), nullable=False)
+    email_usuario:Mapped[str] = mapped_column(String(100), nullable=False)
+    password_usuario:Mapped[str] = mapped_column(String(50), nullable=False)
+    fecha_registro:Mapped[DateTime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        comment='Fecha de registro')
+
+    # FK hacia rol (id_rol)
+    rol_id:Mapped[int] = mapped_column(
+        ForeignKey('usuarios.id_rol', ondelete='RESTRICT')
+    )
+
+    # Relacion con objeto rol
+    rol:Mapped["Rol"]=relationship(
+        "Rol",
+        back_populates="usuarios",
+    )
+
 
     def __init__(self,nombre_usuario,email_usuario,password_usuario,fecha_registro,rol):
         self.nombre_usuario = nombre_usuario
