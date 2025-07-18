@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 from db import init_db
-from models import roles
+from models import roles, usuarios
 
 import db
 

@@ -18,12 +18,11 @@ class Rol(Base):
     descripcion_rol:Mapped[str]=mapped_column(String(100))
 
     # Relacion inversa con usuarios
-    rol:Mapped[list["Rol"]]=relationship(
-        "Rol",
-        back_populates="usuarios",
+    usuarios:Mapped[list["Usuario"]]=relationship(
+        "Usuario",
+        back_populates="roles",
 
     )
-
 
     def __init__(self,nombre_rol,descripcion_rol):
         self.nombre_rol = nombre_rol

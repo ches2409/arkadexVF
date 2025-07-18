@@ -7,7 +7,7 @@ from db import Base
 class Usuario(Base):
 
     __tablename__ = 'usuarios'
-    __mapper_args__ = {
+    __table_args__ = {
         'sqlite_autoincrement': True,
         'comment':'Tabla de usuarios'
     }
@@ -21,24 +21,25 @@ class Usuario(Base):
         server_default=func.now(),
         comment='Fecha de registro')
 
-    # FK hacia rol (id_rol)
+    # FK hacia rol (roles.id_rol)
     rol_id:Mapped[int] = mapped_column(
-        ForeignKey('usuarios.id_rol', ondelete='RESTRICT')
+        ForeignKey('roles.id_rol', ondelete='RESTRICT'),
+        nullable=False,
     )
 
     # Relacion con objeto rol
-    rol:Mapped["Rol"]=relationship(
+    roles:Mapped["Rol"]=relationship(
         "Rol",
         back_populates="usuarios",
     )
 
 
-    def __init__(self,nombre_usuario,email_usuario,password_usuario,fecha_registro,rol):
+    def __init__(self,nombre_usuario,email_usuario,password_usuario,fecha_registro,rol_id):
         self.nombre_usuario = nombre_usuario
         self.email_usuario = email_usuario
         self.password_usuario = password_usuario
         self.fecha_registro = fecha_registro
-        self.rol = rol
+        self.rol_id = rol_id
 
     def __repr__(self):
         return f'Se ha creado {self.nombre_usuario} - {self.email_usuario}'
