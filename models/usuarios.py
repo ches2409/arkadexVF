@@ -14,7 +14,7 @@ class Usuario(Base):
 
     id_usuario:Mapped[int] = mapped_column(Integer, primary_key=True)
     nombre_usuario:Mapped[str] = mapped_column(String(50), nullable=False)
-    email_usuario:Mapped[str] = mapped_column(String(100), nullable=False)
+    email_usuario:Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     password_usuario:Mapped[str] = mapped_column(String(50), nullable=False)
     fecha_registro:Mapped[DateTime] = mapped_column(
         DateTime(timezone=True),
@@ -34,11 +34,10 @@ class Usuario(Base):
     )
 
 
-    def __init__(self,nombre_usuario,email_usuario,password_usuario,fecha_registro,rol_id):
+    def __init__(self,nombre_usuario,email_usuario,password_usuario,rol_id):
         self.nombre_usuario = nombre_usuario
         self.email_usuario = email_usuario
         self.password_usuario = password_usuario
-        self.fecha_registro = fecha_registro
         self.rol_id = rol_id
 
     def __repr__(self):

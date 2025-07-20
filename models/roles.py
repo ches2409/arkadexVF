@@ -5,6 +5,10 @@ from db import Base
 
 
 class Rol(Base):
+    '''
+    Crea una clase llamada Rol
+    Esta clase permite crear una clase de rol
+    '''
 
     # Mapear
     __tablename__ = 'roles'
@@ -14,7 +18,7 @@ class Rol(Base):
     }
 
     id_rol:Mapped[int]=mapped_column(Integer, primary_key=True)
-    nombre_rol:Mapped[str]=mapped_column(String(50), nullable=False)
+    nombre_rol:Mapped[str]=mapped_column(String(50), nullable=False,unique=True)
     descripcion_rol:Mapped[str]=mapped_column(String(100))
 
     # Relacion inversa con usuarios

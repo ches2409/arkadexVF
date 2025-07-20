@@ -19,22 +19,104 @@
     </head>
     <body>
         <main class="container p-4">
-            <h1 class="display-4 text-center mt-4">Pagina de In..</h1>
+            <h1 class="display-4 text-center mt-4">Pagina de Inicio</h1>
 
             <div class="row">
+
                 <div class="col-md-4 offset-md-4 my-auto">
                     <div class="card">
                         <div class="card-header">
-                            <form action="">
+                            <h3>Crear roles</h3>
+                            <form action="/crear-rol" method="post">
                                 <div class="form-group">
-                                    <input type="text" placeholder="" class="form-control" autofocus>
+                                    <input type="text" name="contenido_prueba" placeholder="nombre rol" class="form-control" autofocus>
                                 </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="contenido_des" placeholder="descripcion" class="form-control">
+                                </div>
+                                <button class="btn btn-primary btn-block">
+                                    Guardar
+                                </button>
                             </form>
+                            <div class="card-body">
+                                <ul>
+                                    {% for rol in roles %}
+                                    <li>({{ rol.id_rol }}) {{ rol.nombre_rol }} : {{ rol.descripcion_rol }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                         <div class="card-body">
 
                         </div>
                     </div>
+
+                    <div class="card border-primary mb-3" style="max-width: 40rem;">
+
+                        <div class="card-header">
+                            <h3>Crear usuarios</h3>
+
+                            <form action="/crear-usuario" method="post">
+
+                                <filedset>
+                                    <legend>
+                                        Usuarios
+                                    </legend>
+
+                                    <div>
+                                      <label class="col-form-label mt-4" for="inputNombreUsuario">Nombre de Usuario</label>
+                                      <input type="text" name="nombre_usuario" class="form-control" placeholder="Introduzca el nombre de usuario" id="inputNombreUsuario">
+                                    </div>
+
+                                    <div>
+                                        <label for="exampleInputEmail1" class="form-label mt-4">Direccion de email</label>
+                                        <input type="email" name="campo_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="alguien@example.com">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+
+                                    <div>
+                                        <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                                        <input type="password" name="campo_password" class="form-control" placeholder="Digite su contraseña" autocomplete="off">
+                                    </div>
+
+                                    <div>
+
+                                        <label for="exampleSelect1" class="form-label mt-4">Selecciona el Rol: </label>
+                                        <select class="form-select" id="exampleSelect1" name="id_rol">
+                                            {% for rol in roles %}
+                                                <option value="{{ rol.id_rol }}">{{ rol.nombre_rol}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+
+                                </filedset>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Usuarios creados</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div>
+                                <ul>
+                                {% for usuario in usuarios %}
+                                    <li>{{ usuario.nombre_usuario }} - Rol: {{ usuario.roles.nombre_rol }}</li>
+                                {% endfor %}
+                            </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
                 </div>
             </div>
         </main>
