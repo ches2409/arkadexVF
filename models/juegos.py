@@ -21,7 +21,7 @@ class Juego(Base):
 
     # Relacion con el objeto torneo
     torneos:Mapped["Torneo"]=relationship(
-        "Toeneo",
+        "Torneo",
         back_populates="juegos",
     )
 

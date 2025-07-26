@@ -1,7 +1,11 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
+from sqlalchemy import Enum as _Enum
+
 from db import Base
+from enums.tipos import RolEquipo, TipoTorneo
+
 
 # Crea la tabla de asociacion o tabla de union entre Usuarios y Equipos
 class UsuarioEquipo(Base):
@@ -22,4 +26,11 @@ class UsuarioEquipo(Base):
     torneo_id:Mapped[int] = mapped_column(
         ForeignKey('torneos.id_torneo'),
         primary_key=True
-    )[1] # Clave compuesta para segurar un usuario en un equipo por torneo
+    )
+    rol_equipo:Mapped[RolEquipo] = mapped_column(
+        _Enum(RolEquipo,name='rol_equipo_enum'),
+        nullable=False,
+        default=RolEquipo.miembro,
+        server_default="miembro",
+        comment="Rol del jugador en el equipo"
+    )
