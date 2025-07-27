@@ -19,8 +19,9 @@ app = Flask(__name__)
 def home():  # put application's code here
     todos_los_roles=db.session.query(Rol).all()
     usuarios_con_roles=db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
+    todos_los_torneos=db.session.query(Torneo).all()
 
-    return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo)
+    return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos)
 
 @app.route('/crear-rol', methods=['POST'])
 def crear():
@@ -94,6 +95,28 @@ def crear_torneo():
     db.session.add(torneo)
     db.session.commit()
     return redirect(url_for('home'))
+
+@app.route('/editar-torneo/<id_torneo>', methods=['POST'])
+def editar_torneo(id_torneo):
+    torneo=db.session.query(Torneo).get(id_torneo)
+    if torneo is None:
+        return redirect(url_for('home'))
+    else:
+        torneo.nombre_torneo=request.form["nombre_torneo"]
+        torneo.fecha_inicio_torneo=datetime.strptime(request.form["fecha_inicio_torneo"],"%Y-%m-%d")
+        fecha_final=request.form["fecha_fin_torneo"]
+        torneo.fecha_final_torneo = datetime.strptime(fecha_final, "%Y-%m-%d") if fecha_final else None
+        torneo.tipo_torneo=request.form["contenido_tipo_torneo"]
+        torneo.estado_torneo=request.form["contenido_estado_torneo"]
+        db.session.commit()
+        return redirect(url_for('home'))
+
+@app.route('/eliminar-torneo/<id_torneo>')
+def eliminar_torneo(id_torneo):
+    db.session.query(Torneo).filter_by(id_torneo=int(id_torneo)).delete()
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 
 if __name__ == '__main__':
