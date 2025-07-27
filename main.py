@@ -8,6 +8,7 @@ from enums.tipos import RolUsuario, TipoTorneo, EstadoTorneo
 from models import roles, usuarios, torneos, juegos, equipos
 
 import db
+from models.juegos import Juego
 from models.roles import Rol
 from models.torneos import Torneo
 from models.usuarios import Usuario
@@ -20,8 +21,9 @@ def home():  # put application's code here
     todos_los_roles=db.session.query(Rol).all()
     usuarios_con_roles=db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
     todos_los_torneos=db.session.query(Torneo).all()
+    juegos_con_torneos=db.session.query(Juego).options(joinedload(Juego.torneos)).all()
 
-    return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos)
+    return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos, juegos=juegos_con_torneos)
 
 @app.route('/crear-rol', methods=['POST'])
 def crear():
@@ -114,6 +116,36 @@ def editar_torneo(id_torneo):
 @app.route('/eliminar-torneo/<id_torneo>')
 def eliminar_torneo(id_torneo):
     db.session.query(Torneo).filter_by(id_torneo=int(id_torneo)).delete()
+    db.session.commit()
+    return redirect(url_for('home'))
+
+@app.route('/crear-juego', methods=['POST'])
+def crear_juego():
+    nombre_juego = request.form["nombre_Juego"]
+    descripcion_juego = request.form["descripcion_juego"]
+    rol_torneo=request.form["id_torneo"]
+
+    juego=Juego(nombre_juego=nombre_juego,descripcion_juego=descripcion_juego,torneo_id=rol_torneo)
+    db.session.add(juego)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+@app.route('/editar-juego/<id_juego>', methods=['POST'])
+def editar_juego(id_juego):
+    juego=db.session.query(Juego).get(id_juego)
+    if juego is None:
+        return redirect(url_for('home'))
+    else:
+        juego.nombre_juego=request.form["nombre_juego"]
+        juego.descripcion_juego=request.form["descripcion_juego"]
+        juego.torneo_id=request.form["id_torneo"]
+
+        db.session.commit()
+        return redirect(url_for('home'))
+
+@app.route('/eliminar-juego/<id_juego>')
+def eliminar_juego(id_juego):
+    db.session.query(Juego).filter_by(id_juego=int(id_juego)).delete()
     db.session.commit()
     return redirect(url_for('home'))
 
