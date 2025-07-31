@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <title>{% block title %}  {% endblock %} | Arkadex</title>
 
+        <!---pagina de estilos propia--->
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
         <!-- Tema bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
 
@@ -18,25 +22,53 @@
         <main class="container p-12">
             <h1 class="display-3 text-center mt-4">Eventos E-sports en Arkadex</h1>
 
-            <ul>
-                <li><a href="{{ url_for('home') }}">Inicio</a></li>
-                <li><a href="{{ url_for('roles') }}">Roles</a></li>
-                <li><a href="{{ url_for('usuarios') }}">Usuarios</a></li>
-                <li><a href="{{ url_for('torneos') }}">Torneos</a></li>
-                <li><a href="{{ url_for('juegos') }}">Juegos</a></li>
+{#            <ul class="nav nav-tabs" role="tablist" id="myTab">#}
+{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="true"  type="button" aria-controls="home-tab-pane" role="tab" class="nav-link"  id="home-tab" data-bs-target="#home-tab-pane" href="{{ url_for('home') }}">Inicio</a></li>#}
+{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="roles-tab-pane" role="tab" tabindex="-1" class="nav-link" id="roles-tab" data-bs-target="#roles-tab-pane" href="{{ url_for('roles') }}">Roles</a></li>#}
+{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="usuarios-tab-pane" role="tab" tabindex="-1" class="nav-link" id="usuarios-tab" data-bs-target="#usuarios-tab-pane" href="{{ url_for('usuarios') }}">Usuarios</a></li>#}
+{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="torneos-tab-pane" role="tab" tabindex="-1" class="nav-link " id="torneos-tab" data-bs-target="#torneos-tab-pane" href="{{ url_for('torneos') }}">Torneos</a></li>#}
+{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="juegos-tab-pane" role="tab" tabindex="-1" class="nav-link" id="juegos-tab" data-bs-target="#juegos-tab-pane" href="{{ url_for('juegos') }}">Juegos</a></li>#}
+{#            </ul>#}
+
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
+                {% for pagina in paginas_enum %}
+
+                    <li class="nav-item" role="presentation" >
+                        <a data-bs-toggle="tab"
+                           aria-selected="{% if indice == loop.index %}true{% else %}false{% endif %}"
+                           type="button"
+                           aria-controls="{{ pagina.name }}-tab-pane"
+                           role="tab"
+                           class="nav-link {% if indice == loop.index %}active{% endif %}"
+                           id="{{ pagina.name }}-tab"
+                           data-bs-target="#{{ pagina.name }}-tab-pane"
+                           href="{{ url_for(pagina.name) }}">
+                            {{ pagina.name | capitalize}}
+                        </a>
+                    </li>
+
+                {% endfor %}
             </ul>
 
             <div class="row">
 
                 <div class="col-md-6 offset-md-3 my-auto">
 
-                    <section id="content">
+                    <section class="tab-content" id="content myTabContent">
 
-                        <h1 class="display-4 text-center mt-4">{% block subtitle %}{% endblock %}</h1>
-                        <p>{% block intro %}{% endblock %}</p>
+                        <div class="tab-pane fade {% block fadeTab %}{% endblock %}"
+                             id="{% block idPane %}{% endblock %}"
+                             role="tabpanel"
+                             aria-labelledby="{% block idTab %}{% endblock %}"
+                             tabindex="0">
 
-                        {% block content %}
-                        {% endblock %}
+
+                            <h1 class="display-4 text-center mt-4">{% block subtitle %}{% endblock %}</h1>
+                            <p>{% block intro %}{% endblock %}</p>
+
+                            {% block content %}
+                            {% endblock %}
+                        </div>
 
                     </section>
 

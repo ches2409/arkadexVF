@@ -4,6 +4,12 @@
 	Roles
 {% endblock %}
 
+{% block fadeTab %}show active{% endblock %}
+
+{% block idPane %}roles-tab-pane{% endblock %}
+
+{% block idTab %}roles-tab{% endblock %}
+
 {% block subtitle %}
 	Gestión de Roles
 {% endblock %}
@@ -16,7 +22,7 @@
 
     <div class="card border-info mb-3" style="max-width: 40rem;">
         <div class="card-header">
-            <h3>Roles</h3>
+            <h4>Roles</h4>
             <form action="/crear-rol" method="post">
                 <fieldset>
                     <legend>

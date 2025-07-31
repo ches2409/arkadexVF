@@ -5,6 +5,7 @@ from sqlalchemy.orm import joinedload
 
 from db import init_db
 from enums.tipos import RolUsuario, TipoTorneo, EstadoTorneo
+from enums.paginas import PaginaSitio
 from models import roles, usuarios, torneos, juegos, equipos
 
 import db
@@ -15,32 +16,70 @@ from models.usuarios import Usuario
 
 app = Flask(__name__)
 
+# Context processors
+@app.context_processor
+def date_now():
+    return  {
+        'now':datetime.utcnow()
+    }
+
 @app.route('/roles')
-def roles():
+@app.route('/roles/<indice>')
+def roles(indice=2):
     todos_los_roles = db.session.query(Rol).all()
     usuarios_con_roles = db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
     todos_los_roles = db.session.query(Rol).all()
-    return render_template('roles.html',roles=todos_los_roles, roles_enum=RolUsuario)
+    return render_template('roles.html',
+                           indice=indice,
+                           paginas_enum=PaginaSitio,
+                           roles=todos_los_roles,
+                           roles_enum=RolUsuario
+                           )
 @app.route('/usuarios')
-def usuarios():
+@app.route('/usuarios/<indice>')
+def usuarios(indice=3):
     todos_los_roles = db.session.query(Rol).all()
     usuarios_con_roles = db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
-    return render_template('usuarios.html', roles=todos_los_roles, usuarios=usuarios_con_roles)
+    return render_template('usuarios.html',
+                           indice=indice,
+                           paginas_enum=PaginaSitio,
+                           roles=todos_los_roles,
+                           usuarios=usuarios_con_roles
+                           )
 @app.route('/torneos')
-def torneos():
+@app.route('/torneos/<indice>')
+def torneos(indice=4):
     todos_los_torneos = db.session.query(Torneo).all()
-    return render_template('torneos.html',tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos)
+    return render_template('torneos.html',
+                           indice=indice,
+                           paginas_enum=PaginaSitio,
+                           tipo_torneos_enum=TipoTorneo,
+                           estado_torneos_enum=EstadoTorneo,
+                           torneos=todos_los_torneos
+                           )
 
 @app.route('/juegos')
-def juegos():
+@app.route('/juegos/<indice>')
+def juegos(indice=5):
+    # indice=4
     todos_los_torneos = db.session.query(Torneo).all()
     juegos_con_torneos = db.session.query(Juego).options(joinedload(Juego.torneos)).all()
-    return render_template('juegos.html',torneos=todos_los_torneos, juegos=juegos_con_torneos)
+    return render_template('juegos.html',
+                           indice=indice,
+                           paginas_enum=PaginaSitio,
+                           torneos=todos_los_torneos,
+                           juegos=juegos_con_torneos
+                           )
 
 
 @app.route('/')
-def home():  # put application's code here
-    return render_template('index.html')
+@app.route('/<indice>')
+def inicio(indice=1):  # put application's code here
+
+    return render_template('index.html',
+                           indice=indice,
+                           paginas_enum = PaginaSitio
+                           )
     # todos_los_roles=db.session.query(Rol).all()
     # usuarios_con_roles=db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
     # todos_los_torneos=db.session.query(Torneo).all()

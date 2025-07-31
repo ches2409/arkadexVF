@@ -4,6 +4,12 @@
 	Usuarios
 {% endblock %}
 
+{% block fadeTab %}show active{% endblock %}
+
+{% block idPane %}usuarios-tab-pane{% endblock %}
+
+{% block idTab %}usuarios-tab{% endblock %}
+
 {% block subtitle %}
 	Gestión de Usuarios
 {% endblock %}
@@ -17,7 +23,7 @@
     <div class="card border-primary mb-3" style="max-width: 40rem;">
 
                         <div class="card-header">
-                            <h3>Usuarios</h3>
+                            <h4>Usuarios</h4>
 
                             <form action="/crear-usuario" method="post">
 

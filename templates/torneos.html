@@ -4,6 +4,12 @@
 	Torneos
 {% endblock %}
 
+{% block fadeTab %}show active{% endblock %}
+
+{% block idPane %}torneos-tab-pane{% endblock %}
+
+{% block idTab %}torneos-tab{% endblock %}
+
 {% block subtitle %}
 	Gestión de Torneos
 {% endblock %}
@@ -17,7 +23,7 @@
     <div class="card border-success mb-3">
                         <div class="card-header">
                             <h4 class="card-title">
-                                Torneos
+                                Torneos ({{ now.month }} - {{ now.year }})
                             </h4>
 
                             <form action="/crear-torneo" method="post">
