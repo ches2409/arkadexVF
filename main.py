@@ -15,15 +15,38 @@ from models.usuarios import Usuario
 
 app = Flask(__name__)
 
+@app.route('/roles')
+def roles():
+    todos_los_roles = db.session.query(Rol).all()
+    usuarios_con_roles = db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
+    todos_los_roles = db.session.query(Rol).all()
+    return render_template('roles.html',roles=todos_los_roles, roles_enum=RolUsuario)
+@app.route('/usuarios')
+def usuarios():
+    todos_los_roles = db.session.query(Rol).all()
+    usuarios_con_roles = db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
+    return render_template('usuarios.html', roles=todos_los_roles, usuarios=usuarios_con_roles)
+@app.route('/torneos')
+def torneos():
+    todos_los_torneos = db.session.query(Torneo).all()
+    return render_template('torneos.html',tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos)
+
+@app.route('/juegos')
+def juegos():
+    todos_los_torneos = db.session.query(Torneo).all()
+    juegos_con_torneos = db.session.query(Juego).options(joinedload(Juego.torneos)).all()
+    return render_template('juegos.html',torneos=todos_los_torneos, juegos=juegos_con_torneos)
+
 
 @app.route('/')
 def home():  # put application's code here
-    todos_los_roles=db.session.query(Rol).all()
-    usuarios_con_roles=db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
-    todos_los_torneos=db.session.query(Torneo).all()
-    juegos_con_torneos=db.session.query(Juego).options(joinedload(Juego.torneos)).all()
-
-    return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos, juegos=juegos_con_torneos)
+    return render_template('index.html')
+    # todos_los_roles=db.session.query(Rol).all()
+    # usuarios_con_roles=db.session.query(Usuario).options(joinedload(Usuario.roles)).all()
+    # todos_los_torneos=db.session.query(Torneo).all()
+    # juegos_con_torneos=db.session.query(Juego).options(joinedload(Juego.torneos)).all()
+    #
+    # return render_template('index.html', roles=todos_los_roles, usuarios=usuarios_con_roles, roles_enum=RolUsuario, tipo_torneos_enum=TipoTorneo, estado_torneos_enum=EstadoTorneo, torneos=todos_los_torneos, juegos=juegos_con_torneos)
 
 @app.route('/crear-rol', methods=['POST'])
 def crear():

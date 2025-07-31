@@ -1,0 +1,176 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+	Torneos
+{% endblock %}
+
+{% block subtitle %}
+	Gestión de Torneos
+{% endblock %}
+
+{% block intro %}
+	Administra los Torneos del sistema
+{% endblock %}
+
+{% block content %}
+
+    <div class="card border-success mb-3">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Torneos
+                            </h4>
+
+                            <form action="/crear-torneo" method="post">
+                                <fieldset>
+
+                                    <legend>
+                                        Crear torneos
+                                    </legend>
+
+                                    <div>
+                                        <label class="col-form-label mt-4">Nombre de Torneo</label>
+                                        <input type="text" name="nombre_torneo" class="form-control" placeholder="Introduzca el nombre del torneo">
+                                    </div>
+
+                                    <div>
+                                        <label class="col-form-label mt-4">Fecha de inicio del Torneo</label>
+                                        <input type="date" name="fecha_inicio_torneo" class="form-control" placeholder="Introduzca la decha de inicio">
+                                    </div>
+
+                                    <div>
+                                        <label class="col-form-label mt-4">Fecha de finalización del Torneo (opcional)</label>
+                                        <input type="date" name="fecha_fin_torneo" class="form-control" placeholder="Introduzca la decha de finalización">
+                                    </div>
+
+                                    <div>
+                                        <label class="col-form-label mt4">Tipo de torneo</label>
+
+{#                                        Selector para nombre del rol por enum#}
+                                        <select name="contenido_tipo_torneo" class="form-control">
+                                            {% for torneo in tipo_torneos_enum %}
+                                                <option value="{{ torneo.name }}">{{ torneo.value|capitalize }}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+
+                                    <div>
+                                        <label class="col-form-label mt4">Estado del torneo</label>
+
+{#                                        Selector para nombre del rol por enum#}
+                                        <select name="contenido_estado_torneo" class="form-control">
+                                            {% for estado in estado_torneos_enum %}
+                                                <option value="{{ estado.name }}">{{ estado.value|capitalize }}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+
+
+                                </fieldset>
+                                <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+                            </form>
+
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Torneos creados</h4>
+
+                             <p class="card-text">Listado de todos los torneos disponibles.</p>
+                            <div>
+                                <ul class="list-group list-group-flush">
+                                    {% for torneo in torneos %}
+                                        <li class="list-group-item">
+                                            {{ torneo.nombre_torneo }} - Estado: {{ torneo.estado_torneo.value }} - Fecha de Inicio {{ torneo.fecha_inicio_torneo }}
+
+                                            <a href="#" style="text-decoration:none" class="mr-2" data-bs-toggle="modal" data-bs-target="#activarModalTorneo{{torneo.id_torneo}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"></path>
+                                                </svg>
+                                            </a>
+
+
+                                            <div class="modal fade" id="activarModalTorneo{{torneo.id_torneo}}" tabindex="-1" >
+                                                <div class="modal-dialog modal-dialog-centered" >
+
+                                                    <form action="/editar-torneo/{{ torneo.id_torneo }}" method="post">
+
+                                                        <div class="modal-content">
+
+                                                            <div class="modal-header">
+                                                                <h3 class="modal-title fs-5" id="exampleModalLabel">Editar Torneo</h3>
+
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=Cerrar></button>
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <div class="input-group mb-2">
+                                                                    <span class="input-group-text">Nombre de Torneo</span>
+                                                                    <input name="nombre_torneo" type="text" class="form-control" value="{{torneo.nombre_torneo}}" required/>
+                                                                </div>
+
+                                                                <div class="input-group mb-2">
+                                                                    <span class="input-group-text">Fecha de inicio del torneo</span>
+                                                                    <input name="fecha_inicio_torneo" type="date" class="form-control"
+                                                                           value="{{torneo.fecha_inicio_torneo.strftime('%Y-%m-%d') if torneo.fecha_inicio_torneo else ''}}" required/>
+                                                                </div>
+
+                                                                <div class="input-group mb-2">
+                                                                    <span class="input-group-text">Fecha de Finalización del torneo</span>
+                                                                    <input name="fecha_fin_torneo" type="date" class="form-control"
+                                                                           value="{{torneo.fecha_final_torneo.strftime('%Y-%m-%d') if torneo.fecha_final_torneo else ''}}"/>
+                                                                </div>
+
+                                                                <div>
+                                                                    <label class="col-form-label mt4">Tipo de torneo</label>
+
+                        {#                                        Selector para nombre del rol por enum#}
+                                                                    <select name="contenido_tipo_torneo" class="form-control">
+                                                                        {% for tipo in tipo_torneos_enum %}
+                                                                            <option value="{{ tipo.name }}" {% if torneo.tipo_torneo == tipo %}selected{% endif %}>
+                                                                                {{ tipo.value|capitalize }}
+                                                                            </option>
+                                                                        {% endfor %}
+                                                                    </select>
+
+                                                                </div>
+
+                                                                <div>
+                                                                    <label class="col-form-label mt4">Estado del torneo</label>
+
+                        {#                                        Selector para nombre del rol por enum#}
+                                                                    <select name="contenido_estado_torneo" class="form-control">
+                                                                        {% for estado in estado_torneos_enum %}
+                                                                            <option value="{{ estado.name }}" {% if torneo.estado_torneo == estado %}selected{% endif %}>
+                                                                                {{ estado.value|capitalize }}
+                                                                            </option>
+                                                                        {% endfor %}
+                                                                    </select>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cerrar">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Grabar</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                            <a href="/eliminar-torneo/{{ torneo.id_torneo }}" style="text-decoration:none" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                                </svg>
+                                            </a>
+
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+{% endblock %}
