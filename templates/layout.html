@@ -21,13 +21,18 @@
         <main class="container p-12">
             <h1 class="display-3 text-center mt-4">Eventos E-sports en Arkadex</h1>
 
-{#            <ul class="nav nav-tabs" role="tablist" id="myTab">#}
-{#                <li class="nav-item" role="presentation" ><a aria-selected="true"  type="button" aria-controls="inicio-tab-pane" role="tab" class="nav-link"  id="inicio-tab" href="{{ url_for('inicio.inicio') }}">Inicio</a></li>#}
-{#                <li class="nav-item" role="presentation" ><a aria-selected="false" type="button" aria-controls="roles-tab-pane" role="tab" tabindex="-1" class="nav-link" id="roles-tab" href="{{ url_for('roles.roles') }}">Roles</a></li>#}
-{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="usuarios-tab-pane" role="tab" tabindex="-1" class="nav-link" id="usuarios-tab" data-bs-target="#usuarios-tab-pane" href="{{ url_for('usuarios.usuarios') }}">Usuarios</a></li>#}
-{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="torneos-tab-pane" role="tab" tabindex="-1" class="nav-link " id="torneos-tab" data-bs-target="#torneos-tab-pane" href="{{ url_for('torneos.torneos') }}">Torneos</a></li>#}
-{#                <li class="nav-item" role="presentation" ><a data-bs-toggle="tab" aria-selected="false" type="button" aria-controls="juegos-tab-pane" role="tab" tabindex="-1" class="nav-link" id="juegos-tab" data-bs-target="#juegos-tab-pane" href="{{ url_for('juegos.juegos') }}">Juegos</a></li>#}
-{#            </ul>#}
+            <!-- Sistema de mensajes flash -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
 
             <ul class="nav nav-tabs" role="tablist" id="myTab">
                 {% for pagina in paginas_enum %}
