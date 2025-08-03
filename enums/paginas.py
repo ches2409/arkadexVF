@@ -6,3 +6,11 @@ class PaginaSitio(enum.Enum):
     usuarios="usuarios"
     torneos="torneos"
     juegos="juegos"
+    equipos="equipos"
+
+class RefPagina(enum.Enum):
+    inicio="inicio.inicio"
+    roles="roles.roles"
+    usuarios="usuarios.usuarios"
+    torneos="torneos.torneos"
+    juegos="juegos.juegos"

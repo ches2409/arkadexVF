@@ -1,47 +1,56 @@
-{% extends 'layout.html' %}
-
+{% extends 'layout.html'%}
 {% block title %}
-	Roles
+	Equipos
 {% endblock %}
 
 {% block fadeTab %}show active{% endblock %}
 
-{% block idPane %}roles-tab-pane{% endblock %}
+{% block idPane %}equipos-tab-pane{% endblock %}
 
-{% block idTab %}roles-tab{% endblock %}
+{% block idTab %}equipos-tab{% endblock %}
 
 {% block subtitle %}
-	Gestión de Roles
+	Gestion de equipos
 {% endblock %}
 
 {% block intro %}
-	Administra los Roles del sistema
+	Administra los Equipos participantes
 {% endblock %}
+
 
 {% block content %}
 
-    <div class="card border-info mb-3" style="max-width: 40rem;">
+    <div class="card border-danger mb-3" style="max-width: 40rem;">
         <div class="card-header">
-            <h4>Roles</h4>
-            <form action="{{ url_for('roles.crear') }}" method="post">
+            <h4>Equipos</h4>
+            <form action="{{ url_for('equipos.crear_equipo') }}" method="post">
                 <fieldset>
                     <legend>
-                        Crear roles
+                        Crear Equipos
                     </legend>
 
                     <div>
-                        <label class="col-form-label mt4">Rol</label>
+                        <label class="col-form-label mt4">
+                            Nombre de Equipo
+                        </label>
+                        <input type="text" class="form-control" name="nombre_equipo" placeholder="Introduzca el nombre del equipo">
+                    </div>
 
-                        <select name="contenido_nombre" class="form-control">
-                            {% for rol in roles_enum %}
-                                <option value="{{ rol.name }}">{{ rol.value|capitalize }}</option>
+
+
+                    <div>
+                        <label class="col-form-label mt4">Estado del equipo</label>
+
+                        <select name="estado_equipo" class="form-control">
+                            {% for estado in estado_enum %}
+                                <option value="{{ estado.name }}">{{ estado.value|capitalize }}</option>
                             {% endfor %}
                         </select>
                     </div>
 
                     <div>
                         <label class="col-form-label mt4">Descripcion</label>
-                        <textarea name="contenido_descripcion" rows="2" class="form-control"></textarea>
+                        <textarea name="descripcion_equipo" rows="2" class="form-control"></textarea>
                     </div>
 
                 </fieldset>
@@ -50,16 +59,17 @@
 
             </form>
         </div>
+
         <div class="card-body">
-            <h4 class="card-title">Roles creados</h4>
-            <p class="card-text">Listado de todos los roles disponibles en el sistema.</p>
+            <h4 class="card-title">Equipos creados</h4>
+            <p class="card-text">Listado de equipos disponibles para los torneos.</p>
 
             <div>
                 <ul class="list-group list-group-flush">
-                    {% for rol in roles %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start">({{ rol.id_rol }}) {{ rol.nombre_rol.value }} : {{ rol.descripcion_rol }}
+                    {% for equipo in equipos %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">({{ equipo.id_equipo }}) {{ equipo.nombre_equipo }} - / {{ equipo.estado_equipo.value }} : {{ equipo.descripcion_equipo }}
 
-                            <a href="#" style="text-decoration: none" class="mr-2" data-bs-toggle="modal" data-bs-target="#activarModal{{rol.id_rol}}">
+                            <a href="#" style="text-decoration: none" class="mr-2" data-bs-toggle="modal" data-bs-target="#activarModalEquipo{{equipo.id_equipo}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="steelblue" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
@@ -67,15 +77,15 @@
                             </a>
 
 
-                            <div class="modal fade" id="activarModal{{rol.id_rol}}" tabindex="-1" >
+                            <div class="modal fade" id="activarModalEquipo{{equipo.id_equipo}}" tabindex="-1" >
                                 <div class="modal-dialog modal-dialog-centered" >
 
-                                    <form action="{{ url_for('roles.editar_rol', id_rol=rol.id_rol) }}" method="post">
+                                    <form action="{{ url_for('equipos.editar_equipo', id_equipo=equipo.id_equipo) }}" method="post">
 
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <h3 class="modal-title fs-5" id="exampleModalLabel">Editar Roles</h3>
+                                                <h3 class="modal-title fs-5" id="exampleModalLabel">Editar Equipos</h3>
 
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=Cerrar>
                                                 </button>
@@ -83,13 +93,26 @@
 
                                             <div class="modal-body">
                                                 <div class="input-group mb-2">
-                                                    <span class="input-group-text">Rol</span>
-                                                    <input name="contenido_nombre" type="text" class="form-control" value="{{rol.nombre_rol.value}}" required/>
+                                                    <span class="input-group-text">Equipo</span>
+                                                    <input name="nombre_equipo" type="text" class="form-control" value="{{equipo.nombre_equipo}}" required/>
                                                 </div>
 
                                                 <div>
                                                     <label class="col-form-label mt4">Descripcion</label>
-                                                    <textarea name="contenido_descripcion" rows="2" class="form-control" >{{rol.descripcion_rol}}</textarea>
+                                                    <textarea name="descripcion_equipo" rows="2" class="form-control" >{{equipo.descripcion_equipo}}</textarea>
+                                                </div>
+
+                                                <div>
+                                                    <label class="col-form-label mt4">Tipo de torneo</label>
+
+        {#                                        Selector para nombre del rol por enum#}
+                                                    <select name="estado_equipo" class="form-control">
+                                                        {% for estado in estado_enum %}
+                                                            <option value="{{ estado.name }}" {% if equipo.estado_equipo == estado %}selected{% endif %}>
+                                                                {{ estado.value|capitalize }}
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
                                                 </div>
 
                                             </div>
@@ -103,7 +126,7 @@
                                 </div>
                             </div>
 
-                            <a href="{{ url_for('roles.eliminar', id_rol=rol.id_rol) }}" style="text-decoration:none" >
+                            <a href="{{ url_for('equipos.eliminar_equipo', id_equipo=equipo.id_equipo) }}" style="text-decoration:none" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
                                     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                                 </svg>

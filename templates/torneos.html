@@ -23,10 +23,10 @@
     <div class="card border-success mb-3">
                         <div class="card-header">
                             <h4 class="card-title">
-                                Torneos ({{ now.month }} - {{ now.year }})
+                                Torneos
                             </h4>
 
-                            <form action="/crear-torneo" method="post">
+                            <form action="{{ url_for('torneos.crear_torneo') }}" method="post">
                                 <fieldset>
 
                                     <legend>
