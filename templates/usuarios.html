@@ -109,6 +109,19 @@
                                                                     <input name="campo_password" type="text" class="form-control" value="{{usuario.password_usuario}}" required/>
                                                                 </div>
 
+                                                                <div>
+                                                                    <label class="col-form-label mt4">Rol del usuario</label>
+
+                                                                    <select name="id_rol" class="form-control">
+                                                                        {% for rol in roles %}
+                                                                            <option value="{{ rol.id_rol }}" {% if rol.id_rol == usuario.rol_id%}selected{% endif %}>
+                                                                                {{ rol.nombre_rol.value|capitalize }}
+                                                                            </option>
+                                                                        {% endfor %}
+                                                                    </select>
+
+                                                                </div>
+
                                                             </div>
 
                                                             <div class="modal-footer">

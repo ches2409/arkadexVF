@@ -3,8 +3,8 @@ from flask import Flask, render_template
 import secrets
 
 from db import init_db
-from routes.equipos import equipos, equipos_bp
 
+from routes.equipos import equipos, equipos_bp
 from routes.inicio import inicio_bp
 from routes.roles import roles_bp
 from routes.usuarios import usuarios_bp

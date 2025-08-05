@@ -8,5 +8,15 @@
         <option name="userId" value="4c2566a1:196ea154f4c:-7ffe" />
       </MTProjectMetadataState>
     </option>
+    <option name="titleBarState">
+      <MTProjectTitleBarConfigState>
+        <option name="enabled" value="true" />
+        <option name="projectFrameColorHex" value="261d49" />
+        <option name="useColoredLeftToolWindow" value="true" />
+        <option name="useColoredRightToolWindow" value="true" />
+        <option name="useColoredStatusBar" value="true" />
+        <option name="useColoredTitleBar" value="true" />
+      </MTProjectTitleBarConfigState>
+    </option>
   </component>
 </project>
