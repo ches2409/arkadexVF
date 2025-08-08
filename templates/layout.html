@@ -44,7 +44,7 @@
                            role="tab"
                            class="nav-link {% if indice == loop.index %}active{% endif %}"
                            id="{{ pagina.name }}-tab"
-                           href="{{ url_for(pagina.name + '.' + pagina.name) }}">
+                           href="{{ url_for(referencia_enum[pagina.name].value) }}">
                             {{ pagina.name | capitalize}}
                         </a>
                     </li>

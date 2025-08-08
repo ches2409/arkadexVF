@@ -5,7 +5,7 @@ import db
 from models.roles import Rol
 from models.usuarios import Usuario
 from enums.tipos import RolUsuario
-from enums.paginas import PaginaSitio
+from enums.paginas import PaginaSitio, RefPagina
 from services import rol_service
 
 # Crear el blueprint
@@ -21,6 +21,7 @@ def roles(indice=2):
     return render_template('roles.html',
                            indice=indice,
                            paginas_enum=PaginaSitio,
+                           referencia_enum=RefPagina,
                            roles=todos_los_roles,
                            roles_enum=RolUsuario
                            )

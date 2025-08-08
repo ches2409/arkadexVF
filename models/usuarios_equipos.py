@@ -10,10 +10,6 @@ from enums.tipos import RolEquipo, TipoTorneo
 # Crea la tabla de asociacion o tabla de union entre Usuarios y Equipos
 class UsuarioEquipo(Base):
     __tablename__ = 'usuarios_equipos'
-    # __table_args__ = {
-    #     'sqlite_autoincrement': True,
-    #     'comment':'Tabla de usuariose con su respectivo equipo'
-    # }
 
     usuario_id:Mapped[int] = mapped_column(
         ForeignKey('usuarios.id_usuario'),

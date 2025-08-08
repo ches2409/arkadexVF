@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	Equipos por usuario
+{% endblock %}
+
+{% block fadeTab %}show active{% endblock %}
+
+{% block idPane %}usuEquipos-tab-pane{% endblock %}
+
+{% block idTab %}usuEquipos-tab{% endblock %}
+
+{% block subtitle %}
+	Gestion de Equipos por usuario
+{% endblock %}
+
+{% block intro %}
+	Administra la afiliación de los usuarios a los Equipos participantes
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3>Gestión de Usuarios por Equipo</h3>
+
+            <!-- Aquí puedes agregar el contenido específico para la gestión de usuarios_equipos -->
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Información</h4>
+                <p>Esta página permite gestionar la relación entre usuarios y equipos.</p>
+                <hr>
+                <p class="mb-0">Usuarios disponibles: {{ usuarios|length if usuarios else 0 }}</p>
+                <p class="mb-0">Equipos disponibles: {{ equipos|length if equipos else 0 }}</p>
+                <p class="mb-0">Torneos disponibles: {{ torneos|length if torneos else 0 }}</p>
+            </div>
+
+            <!-- Tabla de usuarios_equipos -->
+            {% if usuarios_equipos %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Equipo</th>
+                            <th>Torneo</th>
+                            <th>Rol en Equipo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for usuario_equipo in usuarios_equipos %}
+                        <tr>
+                            <td>{{ usuario_equipo.nombre_usuario }}</td>
+                            <td>{{ usuario_equipo.nombre_equipo }}</td>
+                            <td>{{ usuario_equipo.nombre_torneo }}</td>
+{#                            mostrar el rol que desempeña el jugador en el equipo#}
+                            <td>{{ usuario_equipo.rol_equipo.value|capitalize if usuario_equipo.rol_equipo else 'N/A' }}</td>
+
+{#                            <td>{{ usuario_equipo.rol_equipo.value if usuario_equipo.rol_equipo else 'N/A' }}</td>#}
+                        </tr>
+                        {% endfor %}
+
+
+
+                    </tbody>
+
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+                No hay relaciones usuario-equipo registradas.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card border-info mb-3" style="max-width: 40rem;">
+        <div class="card-header">
+            <h4>Asignar</h4>
+            <form action="{{ url_for('usuEquipos.afiliar_usuario_equipo') }}" method="post">
+                <fieldset>
+                    <legend>
+                        Asignar equipos, torneos y juegos
+                    </legend>
+
+
+                    <div>
+                        <label class="col-form-label mt4">Selecciona el Jugador: </label>
+                        <select name="contenido_seleccion_jugador" class="form-control">
+                            {% for usuario in usuarios %}
+                                <option value="{{ usuario.id_usuario }}">{{ usuario.nombre_usuario|capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label class="col-form-label mt4">Selecciona el equipo: </label>
+                        <select name="contenido_seleccion_equipo" class="form-control">
+                            {% for equipo in equipos %}
+                                <option value="{{ equipo.id_equipo }}">{{ equipo.nombre_equipo|capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label class="col-form-label mt4">Selecciona Un torneo: </label>
+                        <select name="contenido_seleccion_torneo" class="form-control">
+                            {% for torneo in torneos %}
+                                <option value="{{ torneo.id_torneo }}">{{ torneo.nombre_torneo|capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                    <div>
+                        <label class="col-form-label mt4">Rol en el equipo</label>
+
+                        <select name="contenido_rol_equipo" class="form-control">
+                            {% for rol in roles %}
+                                <option value="{{ rol.name }}">{{ rol.value|capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>
+{% endblock %}
+

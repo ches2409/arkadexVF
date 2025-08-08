@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 import db
-from enums.paginas import PaginaSitio
+from enums.paginas import PaginaSitio, RefPagina
 from enums.tipos import EstadoEquipo
 from models.equipos import Equipo
 from services import equipo_service
@@ -18,6 +18,7 @@ def equipos(indice=6):
     return render_template('equipos.html',
                            indice=indice,
                            paginas_enum=PaginaSitio,
+                           referencia_enum=RefPagina,
                            estado_enum=EstadoEquipo,
                            equipos=todos_los_equipos,
                            )

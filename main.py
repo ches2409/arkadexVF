@@ -10,6 +10,8 @@ from routes.roles import roles_bp
 from routes.usuarios import usuarios_bp
 from routes.torneos import torneos_bp
 from routes.juegos import juegos_bp
+from routes.usuarios_equipos import usuEquipo_bp
+
 from routes.auth import auth_bp
 from routes.ejemplos_flash import ejemplos_flash_bp
 
@@ -25,6 +27,7 @@ app.register_blueprint(usuarios_bp)
 app.register_blueprint(torneos_bp)
 app.register_blueprint(juegos_bp)
 app.register_blueprint(equipos_bp)
+app.register_blueprint(usuEquipo_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(ejemplos_flash_bp)
 
