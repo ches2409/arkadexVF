@@ -1,0 +1,382 @@
+// ==========================================================================
+// NAVIGATION - SMACSS Components
+// ==========================================================================
+// Este archivo contiene todos los estilos para navegación del proyecto
+// Incluye sidebar, navbar, tabs, breadcrumbs, etc.
+
+// Contenedor principal
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+// Sidebar principal
+.sidebar {
+  flex: 0 0 100px;
+  background: transparent;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  z-index: z('sticky');
+  
+  @include respond-to('md') {
+    flex: 0 0 80px;
+  }
+  
+  @include respond-to('sm') {
+    position: fixed;
+    top: 0;
+    left: -100px;
+    height: 100vh;
+    background: rgba($primary-bg, 0.95);
+    backdrop-filter: blur(10px);
+    border-right: 2px solid rgba($accent-blue, 0.3);
+    transition: $transition-base;
+    z-index: z('modal');
+    
+    &.sidebar--open {
+      left: 0;
+    }
+  }
+}
+
+// Logo vertical
+.logo-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  margin-top: spacing('16');
+  
+  @include respond-to('sm') {
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin-top: spacing('8');
+    text-align: center;
+  }
+}
+
+.arkadex-logo {
+  font-size: font-size('4xl');
+  font-family: $font-primary;
+  color: $accent-blue;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 $accent-pink;
+  line-height: 1.1;
+  text-align: center;
+  @include neon-text($accent-blue, 0.4);
+  
+  @include respond-to('md') {
+    font-size: font-size('3xl');
+  }
+  
+  @include respond-to('sm') {
+    font-size: font-size('2xl');
+    text-shadow: 1px 1px 0 $accent-pink;
+  }
+}
+
+// Botón de menú móvil
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: spacing('4');
+  left: spacing('4');
+  z-index: z('modal') + 1;
+  background: rgba($primary-bg, 0.9);
+  border: 2px solid $accent-blue;
+  border-radius: 0.25rem;
+  padding: spacing('2');
+  color: $accent-blue;
+  cursor: pointer;
+  transition: $transition-base;
+  
+  @include respond-to('sm') {
+    display: block;
+  }
+  
+  &:hover {
+    background: rgba($accent-blue, 0.1);
+    box-shadow: 0 0 15px rgba($accent-blue, 0.3);
+  }
+  
+  .hamburger {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    
+    span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: $accent-blue;
+      border-radius: 1px;
+      position: absolute;
+      transition: $transition-base;
+      
+      &:nth-child(1) { top: 0; }
+      &:nth-child(2) { top: 8px; }
+      &:nth-child(3) { top: 16px; }
+    }
+  }
+  
+  &.menu-toggle--active {
+    .hamburger span {
+      &:nth-child(1) {
+        transform: rotate(45deg);
+        top: 8px;
+      }
+      
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+        top: 8px;
+      }
+    }
+  }
+}
+
+// Contenido principal
+.main-content {
+  flex: 1;
+  padding: 0 spacing('5') 0 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  
+  @include respond-to('sm') {
+    padding: 0 spacing('4');
+  }
+}
+
+// Header principal
+header {
+  padding-top: spacing('8');
+  position: relative;
+  margin-bottom: spacing('6');
+  
+  @include respond-to('sm') {
+    padding-top: spacing('16'); // Espacio para el botón de menú
+  }
+}
+
+.subtitle {
+  font-size: font-size('lg');
+  color: $text-gray;
+  text-align: center;
+  margin-bottom: spacing('8');
+  opacity: 0.8;
+}
+
+// Navegación por tabs
+.nav-tabs {
+  display: flex;
+  border-bottom: 2px solid rgba($accent-blue, 0.2);
+  margin-bottom: spacing('6');
+  overflow-x: auto;
+  
+  @include respond-to('sm') {
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.nav-item {
+  flex: 0 0 auto;
+}
+
+.nav-link {
+  display: block;
+  padding: spacing('4') spacing('6');
+  color: $text-gray;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: $transition-base;
+  font-family: $font-primary;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  white-space: nowrap;
+  
+  &:hover {
+    color: $accent-blue;
+    background: rgba($accent-blue, 0.05);
+  }
+  
+  &.active {
+    color: $accent-blue;
+    border-bottom-color: $accent-blue;
+    @include neon-text($accent-blue, 0.3);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $accent-blue, $accent-pink);
+      border-radius: 2px 2px 0 0;
+    }
+  }
+  
+  @include respond-to('sm') {
+    padding: spacing('3') spacing('4');
+    font-size: font-size('sm');
+  }
+}
+
+// Breadcrumbs
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: spacing('2');
+  margin-bottom: spacing('4');
+  font-size: font-size('sm');
+  
+  &__item {
+    color: $text-gray;
+    
+    &:not(:last-child)::after {
+      content: '/';
+      margin-left: spacing('2');
+      color: rgba($text-gray, 0.5);
+    }
+    
+    &--active {
+      color: $accent-blue;
+    }
+  }
+  
+  a {
+    color: inherit;
+    transition: $transition-base;
+    
+    &:hover {
+      color: $accent-blue;
+    }
+  }
+}
+
+// Navegación secundaria
+.nav-secondary {
+  display: flex;
+  gap: spacing('4');
+  align-items: center;
+  margin-bottom: spacing('6');
+  
+  @include respond-to('sm') {
+    flex-direction: column;
+    align-items: stretch;
+    gap: spacing('2');
+  }
+}
+
+.nav-secondary__item {
+  padding: spacing('2') spacing('4');
+  background: rgba($accent-blue, 0.1);
+  border: 1px solid rgba($accent-blue, 0.2);
+  border-radius: 0.25rem;
+  color: $accent-blue;
+  text-decoration: none;
+  transition: $transition-base;
+  font-size: font-size('sm');
+  
+  &:hover {
+    background: rgba($accent-blue, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  &--active {
+    background: $accent-blue;
+    color: white;
+    
+    &:hover {
+      background: lighten($accent-blue, 10%);
+    }
+  }
+}
+
+// Paginación
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: spacing('2');
+  margin: spacing('8') 0;
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba($accent-blue, 0.3);
+    border-radius: 0.25rem;
+    color: $text-gray;
+    text-decoration: none;
+    transition: $transition-base;
+    font-weight: 600;
+    
+    &:hover {
+      border-color: $accent-blue;
+      color: $accent-blue;
+      background: rgba($accent-blue, 0.1);
+    }
+    
+    &--active {
+      background: $accent-blue;
+      border-color: $accent-blue;
+      color: white;
+      @include neon-text(white, 0.2);
+    }
+    
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+  
+  &__ellipsis {
+    padding: 0 spacing('2');
+    color: $text-gray;
+  }
+}
+
+// Overlay para móvil
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($primary-bg, 0.8);
+  z-index: z('modal') - 1;
+  
+  @include respond-to('sm') {
+    &.sidebar-overlay--active {
+      display: block;
+    }
+  }
+}
+
+// Animaciones
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.sidebar--open {
+  animation: slideInLeft 0.3s ease-out;
+}

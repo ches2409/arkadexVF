@@ -12,5 +12,5 @@ class Base(DeclarativeBase):
     pass
 
 def init_db():
-    # Base.metadata.drop_all(bind=engine, checkfirst=True)
+    Base.metadata.drop_all(bind=engine, checkfirst=True)
     Base.metadata.create_all(bind=engine)

@@ -1,0 +1,55 @@
+{
+  "name": "arkadex-styles",
+  "version": "1.0.0",
+  "description": "Sistema de estilos SASS con metodología SMACSS para Arkadex",
+  "main": "static/scss/style.scss",
+  "scripts": {
+    "install-sass": "npm install sass --save-dev",
+    "build-css": "sass static/scss/style.scss static/css/main.css --source-map",
+    "watch-css": "sass --watch static/style.scss:static/css/main.css --source-map",
+    "build-css-prod": "sass static/scss/style.scss static/css/main.css --style compressed --no-source-map",
+    "check-sass": "sass --check static/scss/style.scss",
+    "clean": "rm -rf static/css/main.css static/css/main.css.map",
+    "dev": "npm run watch-css",
+    "build": "npm run build-css-prod",
+    "lint-scss": "sass-lint -v -q",
+    "format-scss": "prettier --write \"static/**/*.scss\""
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "smacss",
+    "css",
+    "gaming",
+    "arkadex",
+    "responsive",
+    "components"
+  ],
+  "author": "Arkadex Team",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "sass": "^1.90.0",
+    "sass-lint": "^1.13.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "sass": {
+    "includePaths": [
+      "static/scss",
+      "static/base"
+    ]
+  }
+}

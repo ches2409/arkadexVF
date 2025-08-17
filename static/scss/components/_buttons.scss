@@ -1,0 +1,313 @@
+// ==========================================================================
+// BUTTONS - SMACSS Components
+// ==========================================================================
+// Este archivo contiene todos los estilos para botones del proyecto
+// Siguiendo la metodología SMACSS para componentes reutilizables
+
+// Botón base
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: spacing('3') spacing('6');
+  font-family: $font-primary;
+  font-size: font-size('base');
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: $transition-base;
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  // Efecto de ondas al hacer clic
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(white, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+  
+  &:active::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+// Variantes de color
+.btn--primary {
+  @include button-hover($accent-blue, lighten($accent-blue, 10%), white);
+  @include neon-text(white, 0.3);
+  
+  &:hover {
+    box-shadow: shadow('neon-blue');
+  }
+}
+
+.btn--secondary {
+  @include button-hover($accent-green, lighten($accent-green, 10%), $primary-bg);
+  
+  &:hover {
+    box-shadow: shadow('neon-green');
+  }
+}
+
+.btn--accent {
+  @include button-hover($accent-pink, lighten($accent-pink, 10%), white);
+  @include neon-text(white, 0.3);
+  
+  &:hover {
+    box-shadow: shadow('neon-pink');
+  }
+}
+
+.btn--warning {
+  @include button-hover($accent-yellow, lighten($accent-yellow, 10%), $primary-bg);
+}
+
+.btn--danger {
+  @include button-hover(#ff4757, lighten(#ff4757, 10%), white);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: $accent-blue;
+  border-color: $accent-blue;
+  
+  &:hover {
+    background: $accent-blue;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: shadow('neon-blue');
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  color: $text-main;
+  border-color: rgba($text-main, 0.5);
+  
+  &:hover {
+    background: $text-main;
+    color: $primary-bg;
+    border-color: $text-main;
+  }
+}
+
+// Tamaños
+.btn--small {
+  padding: spacing('2') spacing('4');
+  font-size: font-size('sm');
+  min-width: 80px;
+}
+
+.btn--large {
+  padding: spacing('4') spacing('8');
+  font-size: font-size('lg');
+  min-width: 160px;
+}
+
+.btn--xl {
+  padding: spacing('5') spacing('10');
+  font-size: font-size('xl');
+  min-width: 200px;
+}
+
+// Estados especiales
+.btn--loading {
+  position: relative;
+  color: transparent;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn--pulse {
+  @include pulse-animation($accent-blue);
+}
+
+// Botones con iconos
+.btn--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: spacing('2');
+  
+  .icon {
+    width: 1.2em;
+    height: 1.2em;
+    fill: currentColor;
+  }
+}
+
+.btn--icon-only {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  min-width: auto;
+  
+  &.btn--small {
+    width: 36px;
+    height: 36px;
+  }
+  
+  &.btn--large {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+// Grupo de botones
+.btn-group {
+  display: inline-flex;
+  
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    }
+    
+    &:last-child {
+      border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    }
+    
+    &:not(:last-child) {
+      border-right: none;
+    }
+    
+    &:hover {
+      z-index: 1;
+      position: relative;
+    }
+  }
+}
+
+// Botones flotantes (FAB)
+.btn--fab {
+  position: fixed;
+  bottom: spacing('6');
+  right: spacing('6');
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: shadow('lg');
+  z-index: z('fixed');
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: shadow('xl');
+  }
+}
+
+// Botones gaming especiales
+.btn--gaming {
+  background: linear-gradient(45deg, $accent-blue, $accent-pink);
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(white, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 10px 30px rgba($accent-blue, 0.3),
+      0 0 30px rgba($accent-pink, 0.2);
+  }
+}
+
+// Responsive
+@include respond-to('sm') {
+  .btn {
+    min-width: 100px;
+  }
+  
+  .btn--small {
+    min-width: 70px;
+  }
+  
+  .btn--large {
+    min-width: 140px;
+  }
+}
+
+@include respond-to('xs') {
+  .btn-group {
+    flex-direction: column;
+    
+    .btn {
+      border-radius: 0;
+      
+      &:first-child {
+        border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+        border-bottom-left-radius: 0;
+      }
+      
+      &:last-child {
+        border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+        border-top-right-radius: 0;
+      }
+      
+      &:not(:last-child) {
+        border-right: 2px solid;
+        border-bottom: none;
+      }
+    }
+  }
+}

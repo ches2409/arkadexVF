@@ -1,0 +1,374 @@
+// ==========================================================================
+// CARDS - SMACSS Components
+// ==========================================================================
+// Este archivo contiene todos los estilos para cards del proyecto
+// Diseñados específicamente para el tema gaming de Arkadex
+
+// Card base
+.card {
+  @include gaming-card($accent-blue);
+  display: flex;
+  flex-direction: column;
+  background: rgba($primary-bg, 0.95);
+  backdrop-filter: blur(10px);
+  margin-bottom: spacing('6');
+  
+  // Animación de entrada
+  @include fade-in-up();
+}
+
+// Header de la card
+.card__header {
+  padding: spacing('4') spacing('6') spacing('2');
+  border-bottom: 1px solid rgba($accent-blue, 0.2);
+  
+  .card__title {
+    font-family: $font-primary;
+    font-size: font-size('xl');
+    color: $accent-blue;
+    margin: 0;
+    @include neon-text($accent-blue, 0.3);
+  }
+  
+  .card__subtitle {
+    font-size: font-size('sm');
+    color: $text-gray;
+    margin: spacing('1') 0 0;
+    opacity: 0.8;
+  }
+}
+
+// Cuerpo de la card
+.card__body {
+  padding: spacing('6');
+  flex: 1;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Footer de la card
+.card__footer {
+  padding: spacing('2') spacing('6') spacing('4');
+  border-top: 1px solid rgba($accent-blue, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: spacing('4');
+}
+
+// Variantes de color para cards
+.card--primary {
+  @include gaming-card($accent-blue);
+  
+  .card__title {
+    color: $accent-blue;
+    @include neon-text($accent-blue, 0.3);
+  }
+}
+
+.card--secondary {
+  @include gaming-card($accent-green);
+  
+  .card__title {
+    color: $accent-green;
+    @include neon-text($accent-green, 0.3);
+  }
+  
+  .card__header,
+  .card__footer {
+    border-color: rgba($accent-green, 0.2);
+  }
+}
+
+.card--accent {
+  @include gaming-card($accent-pink);
+  
+  .card__title {
+    color: $accent-pink;
+    @include neon-text($accent-pink, 0.3);
+  }
+  
+  .card__header,
+  .card__footer {
+    border-color: rgba($accent-pink, 0.2);
+  }
+}
+
+.card--warning {
+  @include gaming-card($accent-yellow);
+  
+  .card__title {
+    color: $accent-yellow;
+    @include neon-text($accent-yellow, 0.3);
+  }
+  
+  .card__header,
+  .card__footer {
+    border-color: rgba($accent-yellow, 0.2);
+  }
+}
+
+// Tamaños de cards
+.card--small {
+  .card__header {
+    padding: spacing('3') spacing('4') spacing('2');
+  }
+  
+  .card__body {
+    padding: spacing('4');
+  }
+  
+  .card__footer {
+    padding: spacing('2') spacing('4') spacing('3');
+  }
+  
+  .card__title {
+    font-size: font-size('lg');
+  }
+}
+
+.card--large {
+  .card__header {
+    padding: spacing('6') spacing('8') spacing('4');
+  }
+  
+  .card__body {
+    padding: spacing('8');
+  }
+  
+  .card__footer {
+    padding: spacing('4') spacing('8') spacing('6');
+  }
+  
+  .card__title {
+    font-size: font-size('2xl');
+  }
+}
+
+// Card horizontal
+.card--horizontal {
+  flex-direction: row;
+  
+  .card__image {
+    flex: 0 0 200px;
+    height: auto;
+  }
+  
+  .card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @include respond-to('md') {
+    flex-direction: column;
+    
+    .card__image {
+      flex: none;
+    }
+  }
+}
+
+// Card con imagen
+.card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+  
+  &--rounded {
+    border-radius: 0.5rem;
+  }
+}
+
+// Card interactiva
+.card--interactive {
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px rgba($accent-blue, 0.2),
+      0 0 40px rgba($accent-blue, 0.1);
+  }
+  
+  &:active {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+// Card con estadísticas (para gaming)
+.card--stats {
+  .card__body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: spacing('4');
+    padding: spacing('4');
+  }
+}
+
+.stat {
+  text-align: center;
+  padding: spacing('3');
+  border-radius: 0.25rem;
+  background: rgba($accent-blue, 0.1);
+  border: 1px solid rgba($accent-blue, 0.2);
+  
+  &__value {
+    display: block;
+    font-size: font-size('2xl');
+    font-weight: bold;
+    color: $accent-blue;
+    @include neon-text($accent-blue, 0.2);
+  }
+  
+  &__label {
+    display: block;
+    font-size: font-size('sm');
+    color: $text-gray;
+    margin-top: spacing('1');
+  }
+}
+
+// Variantes de stats
+.stat--green {
+  background: rgba($accent-green, 0.1);
+  border-color: rgba($accent-green, 0.2);
+  
+  .stat__value {
+    color: $accent-green;
+    @include neon-text($accent-green, 0.2);
+  }
+}
+
+.stat--pink {
+  background: rgba($accent-pink, 0.1);
+  border-color: rgba($accent-pink, 0.2);
+  
+  .stat__value {
+    color: $accent-pink;
+    @include neon-text($accent-pink, 0.2);
+  }
+}
+
+.stat--yellow {
+  background: rgba($accent-yellow, 0.1);
+  border-color: rgba($accent-yellow, 0.2);
+  
+  .stat__value {
+    color: $accent-yellow;
+    @include neon-text($accent-yellow, 0.2);
+  }
+}
+
+// Card de perfil de jugador
+.card--player {
+  .card__header {
+    display: flex;
+    align-items: center;
+    gap: spacing('4');
+  }
+  
+  .player-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid $accent-blue;
+    object-fit: cover;
+  }
+  
+  .player-info {
+    flex: 1;
+    
+    .player-name {
+      margin: 0;
+      font-size: font-size('lg');
+    }
+    
+    .player-rank {
+      color: $accent-green;
+      font-size: font-size('sm');
+      margin: spacing('1') 0 0;
+    }
+  }
+}
+
+// Grid de cards
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: spacing('6');
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: spacing('4');
+  }
+  
+  @include respond-to('md') {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: spacing('4');
+  }
+  
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+    gap: spacing('4');
+  }
+}
+
+// Card de torneo
+.card--tournament {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $accent-blue, $accent-pink, $accent-green);
+  }
+  
+  .tournament-status {
+    position: absolute;
+    top: spacing('4');
+    right: spacing('4');
+    padding: spacing('1') spacing('3');
+    border-radius: 9999px;
+    font-size: font-size('xs');
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    &--active {
+      background: $accent-green;
+      color: $primary-bg;
+    }
+    
+    &--upcoming {
+      background: $accent-yellow;
+      color: $primary-bg;
+    }
+    
+    &--finished {
+      background: $text-gray;
+      color: $primary-bg;
+    }
+  }
+}
+
+// Animaciones adicionales
+@keyframes cardPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba($accent-blue, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba($accent-blue, 0);
+  }
+}
+
+.card--pulse {
+  animation: cardPulse 2s infinite;
+}

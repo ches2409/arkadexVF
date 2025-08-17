@@ -1,0 +1,453 @@
+// ==========================================================================
+// FORMS - SMACSS Components
+// ==========================================================================
+// Este archivo contiene todos los estilos para formularios del proyecto
+// Diseñados con el tema gaming de Arkadex
+
+// Formulario base
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  &--inline {
+    display: flex;
+    gap: spacing('4');
+    align-items: end;
+    max-width: none;
+    
+    @include respond-to('sm') {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: spacing('4');
+    max-width: none;
+  }
+}
+
+// Grupo de campos
+.form-group {
+  margin-bottom: spacing('6');
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &--inline {
+    display: flex;
+    align-items: center;
+    gap: spacing('4');
+    
+    .form-label {
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+    
+    @include respond-to('sm') {
+      flex-direction: column;
+      align-items: stretch;
+      
+      .form-label {
+        margin-bottom: spacing('2');
+      }
+    }
+  }
+}
+
+// Etiquetas
+.form-label {
+  display: block;
+  font-family: $font-primary;
+  font-weight: 600;
+  color: $accent-blue;
+  margin-bottom: spacing('2');
+  font-size: font-size('sm');
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  @include neon-text($accent-blue, 0.2);
+  
+  &--required::after {
+    content: ' *';
+    color: $accent-pink;
+  }
+}
+
+// Campos de entrada base
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: spacing('4');
+  background: rgba($primary-bg, 0.8);
+  border: 2px solid rgba($accent-blue, 0.3);
+  border-radius: 0.25rem;
+  color: $text-main;
+  font-family: $font-body;
+  font-size: font-size('base');
+  transition: $transition-base;
+  
+  &:focus {
+    border-color: $accent-blue;
+    outline: none;
+    box-shadow: 
+      0 0 0 3px rgba($accent-blue, 0.2),
+      0 0 15px rgba($accent-blue, 0.1);
+    background: rgba($primary-bg, 0.9);
+  }
+  
+  &:hover {
+    border-color: rgba($accent-blue, 0.5);
+  }
+  
+  &::placeholder {
+    color: rgba($text-gray, 0.7);
+    font-style: italic;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: rgba($text-gray, 0.1);
+  }
+  
+  &.form-input--error {
+    border-color: $accent-pink;
+    
+    &:focus {
+      border-color: $accent-pink;
+      box-shadow: 
+        0 0 0 3px rgba($accent-pink, 0.2),
+        0 0 15px rgba($accent-pink, 0.1);
+    }
+  }
+  
+  &.form-input--success {
+    border-color: $accent-green;
+    
+    &:focus {
+      border-color: $accent-green;
+      box-shadow: 
+        0 0 0 3px rgba($accent-green, 0.2),
+        0 0 15px rgba($accent-green, 0.1);
+    }
+  }
+}
+
+// Textarea específico
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: $font-body;
+}
+
+// Select personalizado
+.form-select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23#{str-slice(#{$accent-blue}, 2)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right spacing('3') center;
+  background-size: 16px;
+  padding-right: spacing('10');
+  appearance: none;
+  cursor: pointer;
+}
+
+// Checkbox y radio personalizados
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: spacing('3');
+  margin-bottom: spacing('3');
+  cursor: pointer;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba($accent-blue, 0.5);
+  border-radius: 0.125rem;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: $transition-base;
+  
+  &:checked {
+    background: $accent-blue;
+    border-color: $accent-blue;
+    
+    &::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($accent-blue, 0.2);
+  }
+  
+  &[type="radio"] {
+    border-radius: 50%;
+    
+    &:checked::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.form-check-label {
+  color: $text-main;
+  cursor: pointer;
+  font-size: font-size('sm');
+  
+  &:hover {
+    color: $accent-blue;
+  }
+}
+
+// Grupos de botones de radio
+.form-radio-group {
+  display: flex;
+  gap: spacing('4');
+  flex-wrap: wrap;
+  
+  .form-check {
+    margin-bottom: 0;
+    padding: spacing('3') spacing('4');
+    border: 2px solid rgba($accent-blue, 0.3);
+    border-radius: 0.25rem;
+    transition: $transition-base;
+    
+    &:hover {
+      border-color: $accent-blue;
+      background: rgba($accent-blue, 0.05);
+    }
+    
+    input:checked + .form-check-label {
+      color: $accent-blue;
+      @include neon-text($accent-blue, 0.2);
+    }
+  }
+}
+
+// Input con icono
+.form-input-group {
+  position: relative;
+  
+  .form-input {
+    padding-left: spacing('12');
+  }
+  
+  .form-input-icon {
+    position: absolute;
+    left: spacing('4');
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba($accent-blue, 0.7);
+    font-size: font-size('lg');
+    pointer-events: none;
+  }
+  
+  &--icon-right {
+    .form-input {
+      padding-left: spacing('4');
+      padding-right: spacing('12');
+    }
+    
+    .form-input-icon {
+      left: auto;
+      right: spacing('4');
+    }
+  }
+}
+
+// Mensajes de validación
+.form-message {
+  margin-top: spacing('2');
+  font-size: font-size('sm');
+  display: flex;
+  align-items: center;
+  gap: spacing('2');
+  
+  &--error {
+    color: $accent-pink;
+    
+    &::before {
+      content: '⚠';
+      font-size: font-size('base');
+    }
+  }
+  
+  &--success {
+    color: $accent-green;
+    
+    &::before {
+      content: '✓';
+      font-size: font-size('base');
+    }
+  }
+  
+  &--info {
+    color: $accent-blue;
+    
+    &::before {
+      content: 'ℹ';
+      font-size: font-size('base');
+    }
+  }
+}
+
+// Texto de ayuda
+.form-help {
+  margin-top: spacing('2');
+  font-size: font-size('xs');
+  color: rgba($text-gray, 0.8);
+  font-style: italic;
+}
+
+// Formulario de búsqueda
+.search-form {
+  position: relative;
+  max-width: 400px;
+  
+  .form-input {
+    padding-right: spacing('12');
+    border-radius: 9999px;
+  }
+  
+  .search-button {
+    position: absolute;
+    right: spacing('2');
+    top: 50%;
+    transform: translateY(-50%);
+    background: $accent-blue;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: $transition-base;
+    
+    &:hover {
+      background: lighten($accent-blue, 10%);
+      box-shadow: 0 0 15px rgba($accent-blue, 0.4);
+    }
+  }
+}
+
+// Formulario de login gaming
+.login-form {
+  background: rgba($primary-bg, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba($accent-blue, 0.3);
+  border-radius: 0.5rem;
+  padding: spacing('8');
+  box-shadow: 
+    0 20px 40px rgba($primary-bg, 0.5),
+    0 0 40px rgba($accent-blue, 0.1);
+  
+  .form-title {
+    text-align: center;
+    color: $accent-blue;
+    font-family: $font-primary;
+    font-size: font-size('2xl');
+    margin-bottom: spacing('8');
+    @include neon-text($accent-blue, 0.3);
+  }
+  
+  .form-footer {
+    text-align: center;
+    margin-top: spacing('6');
+    padding-top: spacing('6');
+    border-top: 1px solid rgba($accent-blue, 0.2);
+    
+    a {
+      color: $accent-green;
+      font-size: font-size('sm');
+      
+      &:hover {
+        @include neon-text($accent-green, 0.3);
+      }
+    }
+  }
+}
+
+// Rangos/sliders
+.form-range {
+  width: 100%;
+  height: 6px;
+  background: rgba($accent-blue, 0.2);
+  border-radius: 9999px;
+  outline: none;
+  appearance: none;
+  
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: $accent-blue;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba($accent-blue, 0.5);
+    transition: $transition-base;
+    
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba($accent-blue, 0.7);
+    }
+  }
+  
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: $accent-blue;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba($accent-blue, 0.5);
+  }
+}
+
+// Responsive
+@include respond-to('sm') {
+  .form--inline {
+    .form-group--inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  .form-radio-group {
+    flex-direction: column;
+  }
+  
+  .login-form {
+    padding: spacing('6');
+    margin: spacing('4');
+  }
+}

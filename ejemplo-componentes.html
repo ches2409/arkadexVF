@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Componentes SASS - Arkadex</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS compilado de SASS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header con título gaming -->
+        <header class="text-center mb-8">
+            <h1 class="display-3 text-gaming-title">ARKADEX COMPONENTS</h1>
+            <p class="text-lg text-gray">Ejemplos de componentes SASS con metodología SMACSS</p>
+        </header>
+
+        <!-- Sección de Botones -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-primary mb-4">🎮 Botones</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Botones básicos -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Botones Básicos</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="flex flex-col gap-3">
+                            <button class="btn btn--primary">Primary</button>
+                            <button class="btn btn--secondary">Secondary</button>
+                            <button class="btn btn--success">Success</button>
+                            <button class="btn btn--danger">Danger</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones con tamaños -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Tamaños</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="flex flex-col gap-3 items-center">
+                            <button class="btn btn--primary btn--small">Small</button>
+                            <button class="btn btn--primary btn--medium">Medium</button>
+                            <button class="btn btn--primary btn--large">Large</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones especiales -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Especiales</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="flex flex-col gap-3">
+                            <button class="btn btn--gaming">Gaming Style</button>
+                            <button class="btn btn--neon">Neon Effect</button>
+                            <button class="btn btn--pulse">Pulse Animation</button>
+                            <button class="btn btn--loading">Loading...</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Tarjetas -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-primary mb-4">🃏 Tarjetas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjeta básica -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Tarjeta Básica</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="text-gray mb-4">Esta es una tarjeta básica con el estilo gaming de Arkadex.</p>
+                        <button class="btn btn--primary btn--small">Acción</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de estadísticas -->
+                <div class="card card--stats">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Estadísticas</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-value text-success">1,234</span>
+                                <span class="stat-label">Victorias</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value text-danger">567</span>
+                                <span class="stat-label">Derrotas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value text-warning">89%</span>
+                                <span class="stat-label">Win Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de perfil -->
+                <div class="card card--profile">
+                    <div class="card__header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle text-4xl text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">GamerPro2024</h3>
+                        <span class="badge badge--success">Online</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="label">Nivel:</span>
+                                <span class="value text-primary">42</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Rango:</span>
+                                <span class="value text-warning">Diamante</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Formularios -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-primary mb-4">📝 Formularios</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Formulario básico -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Formulario Básico</h3>
+                    </div>
+                    <div class="card__body">
+                        <form class="form">
+                            <div class="form-group">
+                                <label class="form-label" for="username">Usuario</label>
+                                <input type="text" id="username" class="form-input" placeholder="Ingresa tu usuario">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" id="email" class="form-input" placeholder="tu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">Mensaje</label>
+                                <textarea id="message" class="form-textarea" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary w-full">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Formulario gaming -->
+                <div class="card card--gaming">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Login Gaming</h3>
+                    </div>
+                    <div class="card__body">
+                        <form class="form form--gaming">
+                            <div class="form-group">
+                                <label class="form-label" for="gamer-tag">Gamer Tag</label>
+                                <div class="input-group">
+                                    <span class="input-group__icon">
+                                        <i class="fas fa-gamepad"></i>
+                                    </span>
+                                    <input type="text" id="gamer-tag" class="form-input" placeholder="Tu Gamer Tag">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="password">Contraseña</label>
+                                <div class="input-group">
+                                    <span class="input-group__icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <input type="password" id="password" class="form-input" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Recordarme
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn--gaming w-full">INICIAR SESIÓN</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Utilidades -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-primary mb-4">🛠️ Clases de Utilidad</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Colores -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Colores</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="flex flex-col gap-2">
+                            <span class="text-primary">.text-primary</span>
+                            <span class="text-success">.text-success</span>
+                            <span class="text-warning">.text-warning</span>
+                            <span class="text-danger">.text-danger</span>
+                            <span class="text-neon">.text-neon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espaciado -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Espaciado</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="bg-gray-800 p-2 rounded">
+                            <div class="bg-primary p-4 mb-4 rounded">.p-4 .mb-4</div>
+                            <div class="bg-success p-2 mt-2 rounded">.p-2 .mt-2</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layout -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="text-lg font-semibold">Layout</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="bg-primary px-2 py-1 rounded text-xs">flex</span>
+                            <span class="bg-success px-2 py-1 rounded text-xs">justify-between</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-warning p-2 rounded text-center text-xs text-dark">grid</div>
+                            <div class="bg-danger p-2 rounded text-center text-xs">grid-cols-2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Navegación -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-primary mb-4">🧭 Navegación</h2>
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="text-lg font-semibold">Tabs de Navegación</h3>
+                </div>
+                <div class="card__body">
+                    <nav class="nav-tabs">
+                        <a href="#" class="nav-tab nav-tab--active">
+                            <i class="fas fa-home"></i>
+                            Inicio
+                        </a>
+                        <a href="#" class="nav-tab">
+                            <i class="fas fa-trophy"></i>
+                            Torneos
+                        </a>
+                        <a href="#" class="nav-tab">
+                            <i class="fas fa-users"></i>
+                            Equipos
+                        </a>
+                        <a href="#" class="nav-tab">
+                            <i class="fas fa-chart-bar"></i>
+                            Estadísticas
+                        </a>
+                    </nav>
+                    <div class="tab-content mt-4">
+                        <p class="text-gray">Contenido de la pestaña activa. Los estilos de navegación están completamente personalizados con el tema gaming.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-gray-700">
+            <p class="text-gray mb-2">Ejemplo de componentes SASS con metodología SMACSS</p>
+            <p class="text-sm text-gray-600">Arkadex Gaming Platform - 2024</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript para interactividad básica -->
+    <script>
+        // Ejemplo de interactividad con los tabs
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remover clase activa de todos los tabs
+                document.querySelectorAll('.nav-tab').forEach(t => {
+                    t.classList.remove('nav-tab--active');
+                });
+                
+                // Agregar clase activa al tab clickeado
+                this.classList.add('nav-tab--active');
+            });
+        });
+
+        // Ejemplo de loading button
+        document.querySelector('.btn--loading').addEventListener('click', function() {
+            this.disabled = true;
+            setTimeout(() => {
+                this.disabled = false;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
