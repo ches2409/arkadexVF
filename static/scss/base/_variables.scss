@@ -5,18 +5,18 @@
 // Incluye colores, tipografías, espaciados, breakpoints, etc.
 
 // Colores principales
-$primary-bg: #131926;
-$accent-green: #baff3e;
-$accent-pink: #ff00c3;
-$accent-blue: #7edbfc;
-$accent-yellow: #ffee4a;
-$text-main: #d6f5e9;
-$text-gray: #c3cdd9;
-$side-purple: #ad6ad6;
-$side-green: #baff3e;
-$side-orange: #ff8a00;
-$side-pink: #ff00c3;
-$side-blue: #00eaff;
+$primary-bg   : #121926;
+$accent-green : #B9F23D;
+$accent-pink  : #F229E5;
+$accent-blue  : #57ADE4;
+$accent-yellow: #DDFF00;
+$text-main    : #d6f5e9;
+$text-gray    : #c3cdd9;
+$side-purple  : #ad6ad6;
+$side-green   : #B9F23D;
+$side-orange  : #ff8a00;
+$side-pink    : #F229E5;
+$side-blue    : #00eaff;
 
 // Variables adicionales para Bootstrap
 $primary-blue: $accent-blue;
@@ -24,6 +24,7 @@ $secondary-bg: $primary-bg;
 $light-bg: #f8f9fa;
 $dark-bg: #212529;
 $white: #ffffff;
+$light:#ffffff;
 $black: #000000;
 
 // Paleta de colores extendida
@@ -48,15 +49,25 @@ $font-display: 'Aldrich', sans-serif;
 
 // Tamaños de fuente
 $font-sizes: (
+  '3xs': 0.5rem,    // 8px
+  '2xs': 0.625rem,  // 10px
   'xs': 0.75rem,    // 12px
   'sm': 0.875rem,   // 14px
   'base': 1rem,     // 16px
   'lg': 1.125rem,   // 18px
   'xl': 1.25rem,    // 20px
   '2xl': 1.5rem,    // 24px
-  '3xl': 1.875rem,  // 30px
-  '4xl': 2.25rem,   // 36px
-  '5xl': 3rem       // 48px
+  '3xl': 1.625rem,  // 26px
+  '4xl': 1.875rem,  // 30px
+  '5xl': 2rem,      // 32px
+  '6xl': 2.25rem,   // 36px
+  '7xl': 2.5rem,    // 40px
+  '8xl': 3rem,      // 48px
+  // '3xl': 1.875rem,  // 30px
+  // '4xl': 2.25rem,   // 36px
+  // '5xl': 3rem,      // 48px
+  // '6xl': 3.25rem,   // 52px
+  // '7xl': 4rem,     // 64px
 );
 
 // Espaciados

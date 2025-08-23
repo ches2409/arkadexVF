@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../base/variables";
+
 // ==========================================================================
 // Pages - Equipos (Facciones)
 // ==========================================================================
@@ -192,7 +195,7 @@
               border: 2px dashed var(--success-color);
 
               &:hover {
-                background: darken($accent-green, 10%);
+                background: color.adjust(variables.$accent-green, $lightness: -10%);
                 transform: scale(1.1);
               }
             }
@@ -220,7 +223,7 @@
               color: var(--white);
 
               &:hover {
-                background: darken($accent-blue, 10%);
+                background: color.adjust(variables.$accent-blue, $lightness: -10%);
                 transform: translateY(-2px);
               }
             }
@@ -230,7 +233,7 @@
               color: var(--white);
 
               &:hover {
-                background: darken($accent-yellow, 10%);
+                background: color.adjust(variables.$accent-yellow, $lightness: -10%);
                 transform: translateY(-2px);
               }
             }
@@ -240,7 +243,7 @@
               color: var(--white);
 
               &:hover {
-                background: darken($accent-pink, 10%);
+                background: color.adjust(variables.$accent-pink, $lightness: -10%);
                 transform: translateY(-2px);
               }
             }

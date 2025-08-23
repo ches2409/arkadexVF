@@ -65,8 +65,8 @@
   // Column sizes
   @for $i from 1 through 12 {
     &--#{$i} {
-      flex: 0 0 percentage(math.div($i, 12));
-      max-width: percentage(math.div($i, 12));
+      flex: 0 0 math.percentage(math.div($i, 12));
+      max-width: math.percentage(math.div($i, 12));
     }
   }
 
@@ -79,8 +79,8 @@
 
     @for $i from 1 through 11 {
       &--sm-#{$i} {
-        flex: 0 0 percentage(math.div($i, 12));
-        max-width: percentage(math.div($i, 12));
+        flex: 0 0 math.percentage(math.div($i, 12));
+        max-width: math.percentage(math.div($i, 12));
       }
     }
   }
@@ -88,8 +88,8 @@
   @media (min-width: 769px) and (max-width: 1024px) {
     @for $i from 1 through 12 {
       &--md-#{$i} {
-        flex: 0 0 percentage(math.div($i, 12));
-        max-width: percentage(math.div($i, 12));
+        flex: 0 0 math.percentage(math.div($i, 12));
+        max-width: math.percentage(math.div($i, 12));
       }
     }
   }
@@ -97,8 +97,8 @@
   @media (min-width: 1025px) {
     @for $i from 1 through 12 {
       &--lg-#{$i} {
-        flex: 0 0 percentage(math.div($i, 12));
-        max-width: percentage(math.div($i, 12));
+        flex: 0 0 math.percentage(math.div($i, 12));
+        max-width: math.percentage(math.div($i, 12));
       }
     }
   }

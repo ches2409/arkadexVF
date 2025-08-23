@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "../base/functions";
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // BUTTONS - SMACSS Components
 // ==========================================================================
@@ -9,16 +14,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: spacing('3') spacing('6');
-  font-family: $font-primary;
-  font-size: font-size('base');
-  font-weight: 600;
+  padding: functions.spacing('3') functions.spacing('6');
+  font-family: variables.$font-body;
+  font-size: functions.font-size('2xl');
+  font-weight: 400;
   text-align: center;
   text-decoration: none;
-  border: 2px solid transparent;
+  border: 2px solid white;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: $transition-base;
+  transition: variables.$transition-base;
   position: relative;
   overflow: hidden;
   min-width: 120px;
@@ -51,80 +56,80 @@
 
 // Variantes de color
 .btn--primary {
-  @include button-hover($accent-blue, lighten($accent-blue, 10%), white);
-  @include neon-text(white, 0.3);
+  @include mixins.button-hover(variables.$accent-blue, color.adjust(variables.$accent-blue, $lightness: 10%), white);
+  @include mixins.neon-text(white, 0.3);
   
   &:hover {
-    box-shadow: shadow('neon-blue');
+    box-shadow: functions.shadow('neon-blue');
   }
 }
 
 .btn--secondary {
-  @include button-hover($accent-green, lighten($accent-green, 10%), $primary-bg);
+  @include mixins.button-hover(variables.$accent-green, color.adjust(variables.$accent-green, $lightness: 10%), variables.$primary-bg);
   
   &:hover {
-    box-shadow: shadow('neon-green');
+    box-shadow: functions.shadow('neon-green');
   }
 }
 
 .btn--accent {
-  @include button-hover($accent-pink, lighten($accent-pink, 10%), white);
-  @include neon-text(white, 0.3);
+  @include mixins.button-hover(variables.$accent-pink, color.adjust(variables.$accent-pink, $lightness: 10%), white);
+  @include mixins.neon-text(white, 0.3);
   
   &:hover {
-    box-shadow: shadow('neon-pink');
+    box-shadow: functions.shadow('neon-pink');
   }
 }
 
 .btn--warning {
-  @include button-hover($accent-yellow, lighten($accent-yellow, 10%), $primary-bg);
+  @include mixins.button-hover(variables.$accent-yellow, color.adjust(variables.$accent-yellow, $lightness: 10%), variables.$primary-bg);
 }
 
 .btn--danger {
-  @include button-hover(#ff4757, lighten(#ff4757, 10%), white);
+  @include mixins.button-hover(#ff4757, color.adjust(#ff4757, $lightness: 10%), white);
 }
 
 .btn--ghost {
   background: transparent;
-  color: $accent-blue;
-  border-color: $accent-blue;
+  color: variables.$accent-blue;
+  border-color: variables.$accent-blue;
   
   &:hover {
-    background: $accent-blue;
+    background: variables.$accent-blue;
     color: white;
     transform: translateY(-2px);
-    box-shadow: shadow('neon-blue');
+    box-shadow: functions.shadow('neon-blue');
   }
 }
 
 .btn--outline {
   background: transparent;
-  color: $text-main;
-  border-color: rgba($text-main, 0.5);
+  color: variables.$text-main;
+  border-color: rgba(variables.$text-main, 0.5);
   
   &:hover {
-    background: $text-main;
-    color: $primary-bg;
-    border-color: $text-main;
+    background: variables.$text-main;
+    color: variables.$primary-bg;
+    border-color: variables.$text-main;
   }
 }
 
 // Tamaños
 .btn--small {
-  padding: spacing('2') spacing('4');
-  font-size: font-size('sm');
+  padding: functions.spacing('2') functions.spacing('4');
+  font-size: functions.font-size('sm');
   min-width: 80px;
 }
 
 .btn--large {
-  padding: spacing('4') spacing('8');
-  font-size: font-size('lg');
+  padding: functions.spacing('4') functions.spacing('8');
+  font-size: functions.font-size('lg');
   min-width: 160px;
 }
 
 .btn--xl {
-  padding: spacing('5') spacing('10');
-  font-size: font-size('xl');
+  padding: functions.spacing('5') functions.spacing('10');
+  font-size: functions.font-size('xl');
   min-width: 200px;
 }
 
@@ -155,14 +160,14 @@
 }
 
 .btn--pulse {
-  @include pulse-animation($accent-blue);
+  @include mixins.pulse-animation(variables.$accent-blue);
 }
 
 // Botones con iconos
 .btn--icon {
   display: inline-flex;
   align-items: center;
-  gap: spacing('2');
+  gap: functions.spacing('2');
   
   .icon {
     width: 1.2em;
@@ -220,23 +225,23 @@
 // Botones flotantes (FAB)
 .btn--fab {
   position: fixed;
-  bottom: spacing('6');
-  right: spacing('6');
+  bottom: functions.spacing('6');
+  right: functions.spacing('6');
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  box-shadow: shadow('lg');
-  z-index: z('fixed');
+  box-shadow: functions.shadow('lg');
+  z-index: functions.z('fixed');
   
   &:hover {
     transform: scale(1.1);
-    box-shadow: shadow('xl');
+    box-shadow: functions.shadow('xl');
   }
 }
 
 // Botones gaming especiales
 .btn--gaming {
-  background: linear-gradient(45deg, $accent-blue, $accent-pink);
+  background: linear-gradient(45deg, variables.$accent-blue, variables.$accent-pink);
   color: white;
   border: none;
   position: relative;
@@ -265,13 +270,13 @@
   &:hover {
     transform: translateY(-3px);
     box-shadow: 
-      0 10px 30px rgba($accent-blue, 0.3),
-      0 0 30px rgba($accent-pink, 0.2);
+      0 10px 30px rgba(variables.$accent-blue, 0.3),
+      0 0 30px rgba(variables.$accent-pink, 0.2);
   }
 }
 
 // Responsive
-@include respond-to('sm') {
+@include mixins.respond-to('sm') {
   .btn {
     min-width: 100px;
   }
@@ -285,7 +290,7 @@
   }
 }
 
-@include respond-to('xs') {
+@include mixins.respond-to('xs') {
   .btn-group {
     flex-direction: column;
     

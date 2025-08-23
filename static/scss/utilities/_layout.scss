@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // LAYOUT UTILITIES - SMACSS Utilities
 // ==========================================================================
@@ -407,7 +410,7 @@
 }
 
 // Z-index utilities
-@each $name, $value in $z-layers {
+@each $name, $value in variables.$z-layers {
   .z-#{$name} {
     z-index: $value !important;
   }
@@ -572,9 +575,9 @@
 }
 
 // Responsive utilities
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
   @if $breakpoint-name != 'xs' {
-    @include respond-to($breakpoint-name) {
+    @include mixins.respond-to($breakpoint-name) {
       // Display responsive
       .#{$breakpoint-name}\:block {
         display: block !important;
@@ -643,11 +646,11 @@
 
 // Utilidades específicas para gaming
 .center-gaming {
-  @include center-flex();
+  @include mixins.center-flex();
 }
 
 .absolute-center {
-  @include absolute-center();
+  @include mixins.absolute-center();
 }
 
 .full-screen {

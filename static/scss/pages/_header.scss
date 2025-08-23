@@ -1,0 +1,15 @@
+.hero{
+  &__logo{
+    background-image: url('/static/images/logoVertical.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+
+  }
+  &__wrapper{
+    background-image: url('/static/images/hero_back_full.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+}

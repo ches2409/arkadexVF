@@ -134,11 +134,30 @@
 
             </form>
         </div>
+        <!-- Mostrar los usuarios que ya estan asignados a un equipo, con boton para editar y eliminar -->
+        <div class="card-body">
+            <h4 class="card-title">Usuarios asignados a equipos</h4>
+            <p class="card-text">Listado de todos los usuarios asignados a equipos.</p
+            <div>
+                <ul class="list-group list-group-flush">
+                        {% for usuario_equipo in usuarios_equipos %}
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <span>
+                                    ({{ usuario_equipo.id_usuario_equipo }}) {{ usuario_equipo.nombre_usuario }} - Equipo: {{ usuario_equipo.nombre_equipo }} - Torneo: {{ usuario_equipo.nombre_torneo }} - Rol: {{ usuario_equipo.rol_equipo.value|capitalize }}
+                                </span>
+                                <span>
+                                    <a href="" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </span>
+                            </li>
+                        {% endfor %}
+                </ul>
+
+            </div>
 
 
-    </div>
-
-
-</div>
+        </div>
 {% endblock %}
 

@@ -1,3 +1,7 @@
+@use "../base/functions";
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // CARDS - SMACSS Components
 // ==========================================================================
@@ -6,41 +10,41 @@
 
 // Card base
 .card {
-  @include gaming-card($accent-blue);
+  @include mixins.gaming-card(variables.$accent-blue);
   display: flex;
   flex-direction: column;
-  background: rgba($primary-bg, 0.95);
+  background: rgba(variables.$primary-bg, 0.95);
   backdrop-filter: blur(10px);
-  margin-bottom: spacing('6');
+  margin-bottom: functions.spacing('6');
   
   // Animación de entrada
-  @include fade-in-up();
+  @include mixins.fade-in-up();
 }
 
 // Header de la card
 .card__header {
-  padding: spacing('4') spacing('6') spacing('2');
-  border-bottom: 1px solid rgba($accent-blue, 0.2);
+  padding: functions.spacing('4') functions.spacing('6') functions.spacing('2');
+  border-bottom: 1px solid rgba(variables.$accent-blue, 0.2);
   
   .card__title {
-    font-family: $font-primary;
-    font-size: font-size('xl');
-    color: $accent-blue;
+    font-family: variables.$font-primary;
+    font-size: functions.font-size('xl');
+    color: variables.$accent-blue;
     margin: 0;
-    @include neon-text($accent-blue, 0.3);
+    @include mixins.neon-text(variables.$accent-blue, 0.3);
   }
   
   .card__subtitle {
-    font-size: font-size('sm');
-    color: $text-gray;
-    margin: spacing('1') 0 0;
+    font-size: functions.font-size('sm');
+    color: variables.$text-gray;
+    margin: functions.spacing('1') 0 0;
     opacity: 0.8;
   }
 }
 
 // Cuerpo de la card
 .card__body {
-  padding: spacing('6');
+  padding: functions.spacing('6');
   flex: 1;
   
   p:last-child {
@@ -50,100 +54,100 @@
 
 // Footer de la card
 .card__footer {
-  padding: spacing('2') spacing('6') spacing('4');
-  border-top: 1px solid rgba($accent-blue, 0.2);
+  padding: functions.spacing('2') functions.spacing('6') functions.spacing('4');
+  border-top: 1px solid rgba(variables.$accent-blue, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: spacing('4');
+  gap: functions.spacing('4');
 }
 
 // Variantes de color para cards
 .card--primary {
-  @include gaming-card($accent-blue);
+  @include mixins.gaming-card(variables.$accent-blue);
   
   .card__title {
-    color: $accent-blue;
-    @include neon-text($accent-blue, 0.3);
+    color: variables.$accent-blue;
+    @include mixins.neon-text(variables.$accent-blue, 0.3);
   }
 }
 
 .card--secondary {
-  @include gaming-card($accent-green);
+  @include mixins.gaming-card(variables.$accent-green);
   
   .card__title {
-    color: $accent-green;
-    @include neon-text($accent-green, 0.3);
+    color: variables.$accent-green;
+    @include mixins.neon-text(variables.$accent-green, 0.3);
   }
   
   .card__header,
   .card__footer {
-    border-color: rgba($accent-green, 0.2);
+    border-color: rgba(variables.$accent-green, 0.2);
   }
 }
 
 .card--accent {
-  @include gaming-card($accent-pink);
+  @include mixins.gaming-card(variables.$accent-pink);
   
   .card__title {
-    color: $accent-pink;
-    @include neon-text($accent-pink, 0.3);
+    color: variables.$accent-pink;
+    @include mixins.neon-text(variables.$accent-pink, 0.3);
   }
   
   .card__header,
   .card__footer {
-    border-color: rgba($accent-pink, 0.2);
+    border-color: rgba(variables.$accent-pink, 0.2);
   }
 }
 
 .card--warning {
-  @include gaming-card($accent-yellow);
+  @include mixins.gaming-card(variables.$accent-yellow);
   
   .card__title {
-    color: $accent-yellow;
-    @include neon-text($accent-yellow, 0.3);
+    color: variables.$accent-yellow;
+    @include mixins.neon-text(variables.$accent-yellow, 0.3);
   }
   
   .card__header,
   .card__footer {
-    border-color: rgba($accent-yellow, 0.2);
+    border-color: rgba(variables.$accent-yellow, 0.2);
   }
 }
 
 // Tamaños de cards
 .card--small {
   .card__header {
-    padding: spacing('3') spacing('4') spacing('2');
+    padding: functions.spacing('3') functions.spacing('4') functions.spacing('2');
   }
   
   .card__body {
-    padding: spacing('4');
+    padding: functions.spacing('4');
   }
   
   .card__footer {
-    padding: spacing('2') spacing('4') spacing('3');
+    padding: functions.spacing('2') functions.spacing('4') functions.spacing('3');
   }
   
   .card__title {
-    font-size: font-size('lg');
+    font-size: functions.font-size('lg');
   }
 }
 
 .card--large {
   .card__header {
-    padding: spacing('6') spacing('8') spacing('4');
+    padding: functions.spacing('6') functions.spacing('8') functions.spacing('4');
   }
   
   .card__body {
-    padding: spacing('8');
+    padding: functions.spacing('8');
   }
   
   .card__footer {
-    padding: spacing('4') spacing('8') spacing('6');
+    padding: functions.spacing('4') functions.spacing('8') functions.spacing('6');
   }
   
   .card__title {
-    font-size: font-size('2xl');
+    font-size: functions.font-size('2xl');
   }
 }
 
@@ -162,7 +166,7 @@
     flex-direction: column;
   }
   
-  @include respond-to('md') {
+  @include mixins.respond-to('md') {
     flex-direction: column;
     
     .card__image {
@@ -190,8 +194,8 @@
   &:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-      0 20px 40px rgba($accent-blue, 0.2),
-      0 0 40px rgba($accent-blue, 0.1);
+      0 20px 40px rgba(variables.$accent-blue, 0.2),
+      0 0 40px rgba(variables.$accent-blue, 0.1);
   }
   
   &:active {
@@ -204,62 +208,62 @@
   .card__body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: spacing('4');
-    padding: spacing('4');
+    gap: functions.spacing('4');
+    padding: functions.spacing('4');
   }
 }
 
 .stat {
   text-align: center;
-  padding: spacing('3');
+  padding: functions.spacing('3');
   border-radius: 0.25rem;
-  background: rgba($accent-blue, 0.1);
-  border: 1px solid rgba($accent-blue, 0.2);
+  background: rgba(variables.$accent-blue, 0.1);
+  border: 1px solid rgba(variables.$accent-blue, 0.2);
   
   &__value {
     display: block;
-    font-size: font-size('2xl');
+    font-size: functions.font-size('2xl');
     font-weight: bold;
-    color: $accent-blue;
-    @include neon-text($accent-blue, 0.2);
+    color: variables.$accent-blue;
+    @include mixins.neon-text(variables.$accent-blue, 0.2);
   }
   
   &__label {
     display: block;
-    font-size: font-size('sm');
-    color: $text-gray;
-    margin-top: spacing('1');
+    font-size: functions.font-size('sm');
+    color: variables.$text-gray;
+    margin-top: functions.spacing('1');
   }
 }
 
 // Variantes de stats
 .stat--green {
-  background: rgba($accent-green, 0.1);
-  border-color: rgba($accent-green, 0.2);
+  background: rgba(variables.$accent-green, 0.1);
+  border-color: rgba(variables.$accent-green, 0.2);
   
   .stat__value {
-    color: $accent-green;
-    @include neon-text($accent-green, 0.2);
+    color: variables.$accent-green;
+    @include mixins.neon-text(variables.$accent-green, 0.2);
   }
 }
 
 .stat--pink {
-  background: rgba($accent-pink, 0.1);
-  border-color: rgba($accent-pink, 0.2);
+  background: rgba(variables.$accent-pink, 0.1);
+  border-color: rgba(variables.$accent-pink, 0.2);
   
   .stat__value {
-    color: $accent-pink;
-    @include neon-text($accent-pink, 0.2);
+    color: variables.$accent-pink;
+    @include mixins.neon-text(variables.$accent-pink, 0.2);
   }
 }
 
 .stat--yellow {
-  background: rgba($accent-yellow, 0.1);
-  border-color: rgba($accent-yellow, 0.2);
+  background: rgba(variables.$accent-yellow, 0.1);
+  border-color: rgba(variables.$accent-yellow, 0.2);
   
   .stat__value {
-    color: $accent-yellow;
-    @include neon-text($accent-yellow, 0.2);
+    color: variables.$accent-yellow;
+    @include mixins.neon-text(variables.$accent-yellow, 0.2);
   }
 }
 
@@ -268,14 +272,14 @@
   .card__header {
     display: flex;
     align-items: center;
-    gap: spacing('4');
+    gap: functions.spacing('4');
   }
   
   .player-avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 3px solid $accent-blue;
+    border: 3px solid variables.$accent-blue;
     object-fit: cover;
   }
   
@@ -284,13 +288,13 @@
     
     .player-name {
       margin: 0;
-      font-size: font-size('lg');
+      font-size: functions.font-size('lg');
     }
     
     .player-rank {
-      color: $accent-green;
-      font-size: font-size('sm');
-      margin: spacing('1') 0 0;
+      color: variables.$accent-green;
+      font-size: functions.font-size('sm');
+      margin: functions.spacing('1') 0 0;
     }
   }
 }
@@ -299,21 +303,21 @@
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: spacing('6');
+  gap: functions.spacing('6');
   
-  @include respond-to('lg') {
+  @include mixins.respond-to('lg') {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: spacing('4');
+    gap: functions.spacing('4');
   }
   
-  @include respond-to('md') {
+  @include mixins.respond-to('md') {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: spacing('4');
+    gap: functions.spacing('4');
   }
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     grid-template-columns: 1fr;
-    gap: spacing('4');
+    gap: functions.spacing('4');
   }
 }
 
@@ -329,32 +333,32 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, $accent-blue, $accent-pink, $accent-green);
+    background: linear-gradient(90deg, variables.$accent-blue, variables.$accent-pink, variables.$accent-green);
   }
   
   .tournament-status {
     position: absolute;
-    top: spacing('4');
-    right: spacing('4');
-    padding: spacing('1') spacing('3');
+    top: functions.spacing('4');
+    right: functions.spacing('4');
+    padding: functions.spacing('1') functions.spacing('3');
     border-radius: 9999px;
-    font-size: font-size('xs');
+    font-size: functions.font-size('xs');
     font-weight: bold;
     text-transform: uppercase;
     
     &--active {
-      background: $accent-green;
-      color: $primary-bg;
+      background: variables.$accent-green;
+      color: variables.$primary-bg;
     }
     
     &--upcoming {
-      background: $accent-yellow;
-      color: $primary-bg;
+      background: variables.$accent-yellow;
+      color: variables.$primary-bg;
     }
     
     &--finished {
-      background: $text-gray;
-      color: $primary-bg;
+      background: variables.$text-gray;
+      color: variables.$primary-bg;
     }
   }
 }
@@ -362,10 +366,10 @@
 // Animaciones adicionales
 @keyframes cardPulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba($accent-blue, 0.4);
+    box-shadow: 0 0 0 0 rgba(variables.$accent-blue, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 20px rgba($accent-blue, 0);
+    box-shadow: 0 0 0 20px rgba(variables.$accent-blue, 0);
   }
 }
 

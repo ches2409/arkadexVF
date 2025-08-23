@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "functions";
+@use "mixins";
+@use "variables";
+
 // ==========================================================================
 // RESET/NORMALIZE - SMACSS Base
 // ==========================================================================
@@ -5,9 +10,30 @@
 // el comportamiento entre navegadores
 
 // Variables locales para el reset
-$base-font-family: $font-body;
+$base-font-family: variables.$font-body;
 $base-font-size: 16px;
 $base-line-height: 1.6;
+
+// Variables CSS (Custom Properties) para uso dinámico
+:root {
+  --primary-bg: #{variables.$primary-bg};
+  --accent-green: #{variables.$accent-green};
+  --accent-pink: #{variables.$accent-pink};
+  --accent-blue: #{variables.$accent-blue};
+  --accent-yellow: #{variables.$accent-yellow};
+  --text-main: #{variables.$text-main};
+  --text-gray: #{variables.$text-gray};
+  --side-purple: #{variables.$side-purple};
+  --side-green: #{variables.$side-green};
+  --side-orange: #{variables.$side-orange};
+  --side-pink: #{variables.$side-pink};
+  --side-blue: #{variables.$side-blue};
+  --white: #{variables.$white};
+  --black: #{variables.$black};
+  --font-main: #{variables.$font-primary};
+  --primary-color: #{variables.$primary-bg};
+  --secondary-color: #{variables.$accent-blue};
+}
 
 // Reset básico mejorado
 *,
@@ -29,8 +55,8 @@ html {
 
 body {
   font-family: $base-font-family;
-  background-color: $primary-bg;
-  color: $text-main;
+  background-color: variables.$primary-bg;
+  color: variables.$text-main;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -40,49 +66,49 @@ body {
 
 // Elementos de texto
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-primary;
+  font-family: variables.$font-primary;
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: spacing('4');
-  color: $text-main;
+  margin-bottom: functions.spacing('4');
+  color: variables.$text-main;
 }
 
-h1 { font-size: font-size('5xl'); }
-h2 { font-size: font-size('4xl'); }
-h3 { font-size: font-size('3xl'); }
-h4 { font-size: font-size('2xl'); }
-h5 { font-size: font-size('xl'); }
-h6 { font-size: font-size('lg'); }
+h1 { font-size: functions.font-size('5xl'); }
+h2 { font-size: functions.font-size('4xl'); }
+h3 { font-size: functions.font-size('3xl'); }
+h4 { font-size: functions.font-size('2xl'); }
+h5 { font-size: functions.font-size('xl'); }
+h6 { font-size: functions.font-size('lg'); }
 
 p {
-  margin-bottom: spacing('4');
+  margin-bottom: functions.spacing('4');
   line-height: 1.7;
 }
 
 // Enlaces
 a {
-  color: $accent-blue;
+  color: variables.$accent-blue;
   text-decoration: none;
-  transition: $transition-base;
+  transition: variables.$transition-base;
   
   &:hover {
-    color: lighten($accent-blue, 15%);
+    color: color.adjust(variables.$accent-blue, $lightness: 15%);
     text-decoration: underline;
   }
   
   &:focus {
-    @include focus-outline($accent-blue);
+    @include mixins.focus-outline(variables.$accent-blue);
   }
 }
 
 // Listas
 ul, ol {
-  margin-bottom: spacing('4');
-  padding-left: spacing('6');
+  margin-bottom: functions.spacing('4');
+  padding-left: functions.spacing('6');
 }
 
 li {
-  margin-bottom: spacing('2');
+  margin-bottom: functions.spacing('2');
 }
 
 // Eliminar estilos de lista cuando sea necesario
@@ -123,28 +149,28 @@ button {
   padding: 0;
   
   &:focus {
-    @include focus-outline($accent-blue);
+    @include mixins.focus-outline(variables.$accent-blue);
   }
 }
 
 input,
 textarea,
 select {
-  background-color: rgba($text-main, 0.1);
-  border: 2px solid rgba($text-gray, 0.3);
-  border-radius: radius('base');
-  color: $text-main;
-  padding: spacing('3') spacing('4');
-  transition: $transition-base;
+  background-color: rgba(variables.$text-main, 0.1);
+  border: 2px solid rgba(variables.$text-gray, 0.3);
+  border-radius: functions.radius('base');
+  color: variables.$text-main;
+  padding: functions.spacing('3') functions.spacing('4');
+  transition: variables.$transition-base;
   
   &:focus {
-    border-color: $accent-blue;
+    border-color: variables.$accent-blue;
     outline: none;
-    box-shadow: 0 0 0 3px rgba($accent-blue, 0.2);
+    box-shadow: 0 0 0 3px rgba(variables.$accent-blue, 0.2);
   }
   
   &::placeholder {
-    color: $text-gray;
+    color: variables.$text-gray;
     opacity: 0.7;
   }
 }
@@ -158,15 +184,15 @@ table {
 
 th,
 td {
-  padding: spacing('3');
+  padding: functions.spacing('3');
   text-align: left;
-  border-bottom: 1px solid rgba($text-gray, 0.2);
+  border-bottom: 1px solid rgba(variables.$text-gray, 0.2);
 }
 
 th {
   font-weight: bold;
-  color: $text-main;
-  background-color: rgba($accent-blue, 0.1);
+  color: variables.$text-main;
+  background-color: rgba(variables.$accent-blue, 0.1);
 }
 
 // Elementos de código
@@ -179,19 +205,19 @@ samp {
 }
 
 code {
-  background-color: rgba($accent-green, 0.1);
-  color: $accent-green;
+  background-color: rgba(variables.$accent-green, 0.1);
+  color: variables.$accent-green;
   padding: 0.2em 0.4em;
-  border-radius: radius('sm');
+  border-radius: functions.radius('sm');
 }
 
 pre {
-  background-color: rgba($primary-bg, 0.8);
-  border: 1px solid rgba($text-gray, 0.2);
-  border-radius: radius('base');
-  padding: spacing('4');
+  background-color: rgba(variables.$primary-bg, 0.8);
+  border: 1px solid rgba(variables.$text-gray, 0.2);
+  border-radius: functions.radius('base');
+  padding: functions.spacing('4');
   overflow-x: auto;
-  margin-bottom: spacing('4');
+  margin-bottom: functions.spacing('4');
   
   code {
     background: none;
@@ -201,19 +227,19 @@ pre {
 
 // Elementos de cita
 blockquote {
-  border-left: 4px solid $accent-blue;
-  padding-left: spacing('4');
-  margin: spacing('6') 0;
+  border-left: 4px solid variables.$accent-blue;
+  padding-left: functions.spacing('4');
+  margin: functions.spacing('6') 0;
   font-style: italic;
-  color: $text-gray;
+  color: variables.$text-gray;
 }
 
 // Línea horizontal
 hr {
   border: none;
   height: 2px;
-  background: linear-gradient(90deg, transparent, $accent-blue, transparent);
-  margin: spacing('8') 0;
+  background: linear-gradient(90deg, transparent, variables.$accent-blue, transparent);
+  margin: functions.spacing('8') 0;
 }
 
 // Elementos ocultos
@@ -240,16 +266,16 @@ hr {
 
 // Scrollbar personalizado para el proyecto
 html {
-  @include custom-scrollbar($accent-blue, rgba($primary-bg, 0.8));
+  @include mixins.custom-scrollbar(variables.$accent-blue, rgba(variables.$primary-bg, 0.8));
 }
 
 // Selección de texto personalizada
 ::selection {
-  background-color: rgba($accent-pink, 0.3);
-  color: $text-main;
+  background-color: rgba(variables.$accent-pink, 0.3);
+  color: variables.$text-main;
 }
 
 ::-moz-selection {
-  background-color: rgba($accent-pink, 0.3);
-  color: $text-main;
+  background-color: rgba(variables.$accent-pink, 0.3);
+  color: variables.$text-main;
 }

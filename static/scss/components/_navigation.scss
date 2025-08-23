@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "../base/functions";
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // NAVIGATION - SMACSS Components
 // ==========================================================================
@@ -19,22 +24,22 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  z-index: z('sticky');
+  z-index: functions.z('sticky');
   
-  @include respond-to('md') {
+  @include mixins.respond-to('md') {
     flex: 0 0 80px;
   }
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     position: fixed;
     top: 0;
     left: -100px;
     height: 100vh;
-    background: rgba($primary-bg, 0.95);
+    background: rgba(variables.$primary-bg, 0.95);
     backdrop-filter: blur(10px);
-    border-right: 2px solid rgba($accent-blue, 0.3);
-    transition: $transition-base;
-    z-index: z('modal');
+    border-right: 2px solid rgba(variables.$accent-blue, 0.3);
+    transition: variables.$transition-base;
+    z-index: functions.z('modal');
     
     &.sidebar--open {
       left: 0;
@@ -46,34 +51,34 @@
 .logo-vertical {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  margin-top: spacing('16');
+  margin-top: functions.spacing('16');
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     writing-mode: horizontal-tb;
     transform: none;
-    margin-top: spacing('8');
+    margin-top: functions.spacing('8');
     text-align: center;
   }
 }
 
 .arkadex-logo {
-  font-size: font-size('4xl');
-  font-family: $font-primary;
-  color: $accent-blue;
+  font-size: functions.font-size('4xl');
+  font-family: variables.$font-primary;
+  color: variables.$accent-blue;
   font-weight: bold;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 0 $accent-pink;
+  text-shadow: 2px 2px 0 variables.$accent-pink;
   line-height: 1.1;
   text-align: center;
-  @include neon-text($accent-blue, 0.4);
+  @include mixins.neon-text(variables.$accent-blue, 0.4);
   
-  @include respond-to('md') {
-    font-size: font-size('3xl');
+  @include mixins.respond-to('md') {
+    font-size: functions.font-size('3xl');
   }
   
-  @include respond-to('sm') {
-    font-size: font-size('2xl');
-    text-shadow: 1px 1px 0 $accent-pink;
+  @include mixins.respond-to('sm') {
+    font-size: functions.font-size('2xl');
+    text-shadow: 1px 1px 0 variables.$accent-pink;
   }
 }
 
@@ -81,24 +86,24 @@
 .menu-toggle {
   display: none;
   position: fixed;
-  top: spacing('4');
-  left: spacing('4');
-  z-index: z('modal') + 1;
-  background: rgba($primary-bg, 0.9);
-  border: 2px solid $accent-blue;
+  top: functions.spacing('4');
+  left: functions.spacing('4');
+  z-index: functions.z('modal') + 1;
+  background: rgba(variables.$primary-bg, 0.9);
+  border: 2px solid variables.$accent-blue;
   border-radius: 0.25rem;
-  padding: spacing('2');
-  color: $accent-blue;
+  padding: functions.spacing('2');
+  color: variables.$accent-blue;
   cursor: pointer;
-  transition: $transition-base;
+  transition: variables.$transition-base;
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     display: block;
   }
   
   &:hover {
-    background: rgba($accent-blue, 0.1);
-    box-shadow: 0 0 15px rgba($accent-blue, 0.3);
+    background: rgba(variables.$accent-blue, 0.1);
+    box-shadow: 0 0 15px rgba(variables.$accent-blue, 0.3);
   }
   
   .hamburger {
@@ -110,10 +115,10 @@
       display: block;
       height: 2px;
       width: 100%;
-      background: $accent-blue;
+      background: variables.$accent-blue;
       border-radius: 1px;
       position: absolute;
-      transition: $transition-base;
+      transition: variables.$transition-base;
       
       &:nth-child(1) { top: 0; }
       &:nth-child(2) { top: 8px; }
@@ -143,43 +148,43 @@
 // Contenido principal
 .main-content {
   flex: 1;
-  padding: 0 spacing('5') 0 0;
+  padding: 0 functions.spacing('5') 0 0;
   display: flex;
   flex-direction: column;
   min-width: 0;
   
-  @include respond-to('sm') {
-    padding: 0 spacing('4');
+  @include mixins.respond-to('sm') {
+    padding: 0 functions.spacing('4');
   }
 }
 
 // Header principal
 header {
-  padding-top: spacing('8');
+  padding-top: functions.spacing('8');
   position: relative;
-  margin-bottom: spacing('6');
+  margin-bottom: functions.spacing('6');
   
-  @include respond-to('sm') {
-    padding-top: spacing('16'); // Espacio para el botón de menú
+  @include mixins.respond-to('sm') {
+    padding-top: functions.spacing('16'); // Espacio para el botón de menú
   }
 }
 
 .subtitle {
-  font-size: font-size('lg');
-  color: $text-gray;
+  font-size: functions.font-size('lg');
+  color: variables.$text-gray;
   text-align: center;
-  margin-bottom: spacing('8');
+  margin-bottom: functions.spacing('8');
   opacity: 0.8;
 }
 
 // Navegación por tabs
 .nav-tabs {
   display: flex;
-  border-bottom: 2px solid rgba($accent-blue, 0.2);
-  margin-bottom: spacing('6');
+  border-bottom: 2px solid rgba(variables.$accent-blue, 0.2);
+  margin-bottom: functions.spacing('6');
   overflow-x: auto;
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
   }
@@ -191,12 +196,12 @@ header {
 
 .nav-link {
   display: block;
-  padding: spacing('4') spacing('6');
-  color: $text-gray;
+  padding: functions.spacing('4') functions.spacing('6');
+  color: variables.$text-gray;
   text-decoration: none;
   border-bottom: 3px solid transparent;
-  transition: $transition-base;
-  font-family: $font-primary;
+  transition: variables.$transition-base;
+  font-family: variables.$font-primary;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -204,14 +209,14 @@ header {
   white-space: nowrap;
   
   &:hover {
-    color: $accent-blue;
-    background: rgba($accent-blue, 0.05);
+    color: variables.$accent-blue;
+    background: rgba(variables.$accent-blue, 0.05);
   }
   
   &.active {
-    color: $accent-blue;
-    border-bottom-color: $accent-blue;
-    @include neon-text($accent-blue, 0.3);
+    color: variables.$accent-blue;
+    border-bottom-color: variables.$accent-blue;
+    @include mixins.neon-text(variables.$accent-blue, 0.3);
     
     &::before {
       content: '';
@@ -220,14 +225,14 @@ header {
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, $accent-blue, $accent-pink);
+      background: linear-gradient(90deg, variables.$accent-blue, variables.$accent-pink);
       border-radius: 2px 2px 0 0;
     }
   }
   
-  @include respond-to('sm') {
-    padding: spacing('3') spacing('4');
-    font-size: font-size('sm');
+  @include mixins.respond-to('sm') {
+    padding: functions.spacing('3') functions.spacing('4');
+    font-size: functions.font-size('sm');
   }
 }
 
@@ -235,30 +240,30 @@ header {
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: spacing('2');
-  margin-bottom: spacing('4');
-  font-size: font-size('sm');
+  gap: functions.spacing('2');
+  margin-bottom: functions.spacing('4');
+  font-size: functions.font-size('sm');
   
   &__item {
-    color: $text-gray;
+    color: variables.$text-gray;
     
     &:not(:last-child)::after {
       content: '/';
-      margin-left: spacing('2');
-      color: rgba($text-gray, 0.5);
+      margin-left: functions.spacing('2');
+      color: rgba(variables.$text-gray, 0.5);
     }
     
     &--active {
-      color: $accent-blue;
+      color: variables.$accent-blue;
     }
   }
   
   a {
     color: inherit;
-    transition: $transition-base;
+    transition: variables.$transition-base;
     
     &:hover {
-      color: $accent-blue;
+      color: variables.$accent-blue;
     }
   }
 }
@@ -266,38 +271,38 @@ header {
 // Navegación secundaria
 .nav-secondary {
   display: flex;
-  gap: spacing('4');
+  gap: functions.spacing('4');
   align-items: center;
-  margin-bottom: spacing('6');
+  margin-bottom: functions.spacing('6');
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     flex-direction: column;
     align-items: stretch;
-    gap: spacing('2');
+    gap: functions.spacing('2');
   }
 }
 
 .nav-secondary__item {
-  padding: spacing('2') spacing('4');
-  background: rgba($accent-blue, 0.1);
-  border: 1px solid rgba($accent-blue, 0.2);
+  padding: functions.spacing('2') functions.spacing('4');
+  background: rgba(variables.$accent-blue, 0.1);
+  border: 1px solid rgba(variables.$accent-blue, 0.2);
   border-radius: 0.25rem;
-  color: $accent-blue;
+  color: variables.$accent-blue;
   text-decoration: none;
-  transition: $transition-base;
-  font-size: font-size('sm');
+  transition: variables.$transition-base;
+  font-size: functions.font-size('sm');
   
   &:hover {
-    background: rgba($accent-blue, 0.2);
+    background: rgba(variables.$accent-blue, 0.2);
     transform: translateY(-1px);
   }
   
   &--active {
-    background: $accent-blue;
+    background: variables.$accent-blue;
     color: white;
     
     &:hover {
-      background: lighten($accent-blue, 10%);
+      background: color.adjust(variables.$accent-blue, $lightness: 10%);
     }
   }
 }
@@ -307,8 +312,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: spacing('2');
-  margin: spacing('8') 0;
+  gap: functions.spacing('2');
+  margin: functions.spacing('8') 0;
   
   &__item {
     display: flex;
@@ -316,24 +321,24 @@ header {
     justify-content: center;
     width: 40px;
     height: 40px;
-    border: 2px solid rgba($accent-blue, 0.3);
+    border: 2px solid rgba(variables.$accent-blue, 0.3);
     border-radius: 0.25rem;
-    color: $text-gray;
+    color: variables.$text-gray;
     text-decoration: none;
-    transition: $transition-base;
+    transition: variables.$transition-base;
     font-weight: 600;
     
     &:hover {
-      border-color: $accent-blue;
-      color: $accent-blue;
-      background: rgba($accent-blue, 0.1);
+      border-color: variables.$accent-blue;
+      color: variables.$accent-blue;
+      background: rgba(variables.$accent-blue, 0.1);
     }
     
     &--active {
-      background: $accent-blue;
-      border-color: $accent-blue;
+      background: variables.$accent-blue;
+      border-color: variables.$accent-blue;
       color: white;
-      @include neon-text(white, 0.2);
+      @include mixins.neon-text(white, 0.2);
     }
     
     &--disabled {
@@ -344,8 +349,8 @@ header {
   }
   
   &__ellipsis {
-    padding: 0 spacing('2');
-    color: $text-gray;
+    padding: 0 functions.spacing('2');
+    color: variables.$text-gray;
   }
 }
 
@@ -357,10 +362,10 @@ header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba($primary-bg, 0.8);
-  z-index: z('modal') - 1;
+  background: rgba(variables.$primary-bg, 0.8);
+  z-index: functions.z('modal') - 1;
   
-  @include respond-to('sm') {
+  @include mixins.respond-to('sm') {
     &.sidebar-overlay--active {
       display: block;
     }

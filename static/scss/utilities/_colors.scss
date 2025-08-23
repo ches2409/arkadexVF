@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // COLOR UTILITIES - SMACSS Utilities
 // ==========================================================================
@@ -5,7 +9,7 @@
 // Generadas desde el mapa de colores del proyecto
 
 // Colores de texto
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .text-#{$name} {
     color: $color !important;
   }
@@ -29,7 +33,7 @@
 }
 
 // Colores de fondo
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .bg-#{$name} {
     background-color: $color !important;
   }
@@ -53,7 +57,7 @@
 }
 
 // Colores de fondo con transparencia
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .bg-#{$name}-10 {
     background-color: rgba($color, 0.1) !important;
   }
@@ -80,7 +84,7 @@
 }
 
 // Colores de borde
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .border-#{$name} {
     border-color: $color !important;
   }
@@ -104,120 +108,120 @@
 
 // Gradientes gaming
 .bg-gradient-primary {
-  background: linear-gradient(135deg, $accent-blue, $accent-pink) !important;
+  background: linear-gradient(135deg, variables.$accent-blue, variables.$accent-pink) !important;
 }
 
 .bg-gradient-secondary {
-  background: linear-gradient(135deg, $accent-green, $accent-yellow) !important;
+  background: linear-gradient(135deg, variables.$accent-green, variables.$accent-yellow) !important;
 }
 
 .bg-gradient-gaming {
-  background: linear-gradient(45deg, $accent-blue, $accent-pink, $accent-green) !important;
+  background: linear-gradient(45deg, variables.$accent-blue, variables.$accent-pink, variables.$accent-green) !important;
 }
 
 .bg-gradient-neon {
-  background: linear-gradient(90deg, $accent-blue, $accent-pink, $accent-yellow, $accent-green) !important;
+  background: linear-gradient(90deg, variables.$accent-blue, variables.$accent-pink, variables.$accent-yellow, variables.$accent-green) !important;
 }
 
 .bg-gradient-dark {
-  background: linear-gradient(135deg, $primary-bg, lighten($primary-bg, 10%)) !important;
+  background: linear-gradient(135deg, variables.$primary-bg, color.adjust(variables.$primary-bg, $lightness: 10%)) !important;
 }
 
 // Efectos de texto neón
 .text-neon-blue {
-  @include neon-text($accent-blue, 0.5);
+  @include mixins.neon-text(variables.$accent-blue, 0.5);
 }
 
 .text-neon-pink {
-  @include neon-text($accent-pink, 0.5);
+  @include mixins.neon-text(variables.$accent-pink, 0.5);
 }
 
 .text-neon-green {
-  @include neon-text($accent-green, 0.5);
+  @include mixins.neon-text(variables.$accent-green, 0.5);
 }
 
 .text-neon-yellow {
-  @include neon-text($accent-yellow, 0.5);
+  @include mixins.neon-text(variables.$accent-yellow, 0.5);
 }
 
 // Variaciones de intensidad para efectos neón
 .text-neon-light {
-  @include neon-text($accent-blue, 0.3);
+  @include mixins.neon-text(variables.$accent-blue, 0.3);
 }
 
 .text-neon-strong {
-  @include neon-text($accent-blue, 0.8);
+  @include mixins.neon-text(variables.$accent-blue, 0.8);
 }
 
 // Colores de estado
 .text-success {
-  color: $accent-green !important;
+  color: variables.$accent-green !important;
 }
 
 .text-warning {
-  color: $accent-yellow !important;
+  color: variables.$accent-yellow !important;
 }
 
 .text-danger {
-  color: $accent-pink !important;
+  color: variables.$accent-pink !important;
 }
 
 .text-info {
-  color: $accent-blue !important;
+  color: variables.$accent-blue !important;
 }
 
 .bg-success {
-  background-color: $accent-green !important;
+  background-color: variables.$accent-green !important;
 }
 
 .bg-warning {
-  background-color: $accent-yellow !important;
+  background-color: variables.$accent-yellow !important;
 }
 
 .bg-danger {
-  background-color: $accent-pink !important;
+  background-color: variables.$accent-pink !important;
 }
 
 .bg-info {
-  background-color: $accent-blue !important;
+  background-color: variables.$accent-blue !important;
 }
 
 // Colores de estado con transparencia
 .bg-success-10 {
-  background-color: rgba($accent-green, 0.1) !important;
+  background-color: rgba(variables.$accent-green, 0.1) !important;
 }
 
 .bg-warning-10 {
-  background-color: rgba($accent-yellow, 0.1) !important;
+  background-color: rgba(variables.$accent-yellow, 0.1) !important;
 }
 
 .bg-danger-10 {
-  background-color: rgba($accent-pink, 0.1) !important;
+  background-color: rgba(variables.$accent-pink, 0.1) !important;
 }
 
 .bg-info-10 {
-  background-color: rgba($accent-blue, 0.1) !important;
+  background-color: rgba(variables.$accent-blue, 0.1) !important;
 }
 
 // Bordes de estado
 .border-success {
-  border-color: $accent-green !important;
+  border-color: variables.$accent-green !important;
 }
 
 .border-warning {
-  border-color: $accent-yellow !important;
+  border-color: variables.$accent-yellow !important;
 }
 
 .border-danger {
-  border-color: $accent-pink !important;
+  border-color: variables.$accent-pink !important;
 }
 
 .border-info {
-  border-color: $accent-blue !important;
+  border-color: variables.$accent-blue !important;
 }
 
 // Hover states para colores
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .hover\:text-#{$name}:hover {
     color: $color !important;
   }
@@ -232,7 +236,7 @@
 }
 
 // Focus states para colores
-@each $name, $color in $colors {
+@each $name, $color in variables.$colors {
   .focus\:text-#{$name}:focus {
     color: $color !important;
   }
@@ -247,10 +251,10 @@
 }
 
 // Colores responsive
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
   @if $breakpoint-name != 'xs' {
-    @include respond-to($breakpoint-name) {
-      @each $name, $color in $colors {
+    @include mixins.respond-to($breakpoint-name) {
+      @each $name, $color in variables.$colors {
         .#{$breakpoint-name}\:text-#{$name} {
           color: $color !important;
         }

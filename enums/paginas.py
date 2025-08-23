@@ -3,10 +3,10 @@ import enum
 class PaginaSitio(enum.Enum):
     inicio="inicio"
     roles="roles"
-    usuarios="usuarios"
+    usuarios="jugadores"
     torneos="torneos"
     juegos="juegos"
-    equipos="equipos"
+    equipos="facciones"
     usuarios_equipos="Afiliacion"
 
 class RefPagina(enum.Enum):
@@ -16,4 +16,4 @@ class RefPagina(enum.Enum):
     torneos="torneos.torneos"
     juegos="juegos.juegos"
     equipos="equipos.equipos"
-    usuarios_equipos="usuEquipos.usuEquipos"
+    usuarios_equipos="usuarios_equipos.usuarios_equipos"

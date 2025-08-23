@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables";
+
 // ==========================================================================
 // SPACING UTILITIES - SMACSS Utilities
 // ==========================================================================
@@ -5,7 +8,7 @@
 // Generadas automáticamente desde el mapa de espaciados
 
 // Generar clases de margin
-@each $key, $value in $spacing {
+@each $key, $value in variables.$spacing {
   // Margin en todas las direcciones
   .m-#{$key} {
     margin: $value !important;
@@ -45,7 +48,7 @@
 }
 
 // Generar clases de padding
-@each $key, $value in $spacing {
+@each $key, $value in variables.$spacing {
   // Padding en todas las direcciones
   .p-#{$key} {
     padding: $value !important;
@@ -116,7 +119,7 @@
 }
 
 // Espaciado negativo (útil para ajustes finos)
-@each $key, $value in $spacing {
+@each $key, $value in variables.$spacing {
   @if $key != '0' {
     .-m-#{$key} {
       margin: -$value !important;
@@ -151,10 +154,10 @@
 }
 
 // Espaciado responsive
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
   @if $breakpoint-name != 'xs' {
-    @include respond-to($breakpoint-name) {
-      @each $key, $value in $spacing {
+    @include mixins.respond-to($breakpoint-name) {
+      @each $key, $value in variables.$spacing {
         // Margin classes
         .#{$breakpoint-name}\:m-#{$key} {
           margin: $value !important;
@@ -253,7 +256,7 @@
 }
 
 // Gap utilities para flexbox y grid
-@each $key, $value in $spacing {
+@each $key, $value in variables.$spacing {
   .gap-#{$key} {
     gap: $value !important;
   }
@@ -268,10 +271,10 @@
 }
 
 // Gap responsive
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
+@each $breakpoint-name, $breakpoint-value in variables.$breakpoints {
   @if $breakpoint-name != 'xs' {
-    @include respond-to($breakpoint-name) {
-      @each $key, $value in $spacing {
+    @include mixins.respond-to($breakpoint-name) {
+      @each $key, $value in variables.$spacing {
         .#{$breakpoint-name}\:gap-#{$key} {
           gap: $value !important;
         }

@@ -6,7 +6,7 @@
   "scripts": {
     "install-sass": "npm install sass --save-dev",
     "build-css": "sass static/scss/style.scss static/css/main.css --source-map",
-    "watch-css": "sass --watch static/style.scss:static/css/main.css --source-map",
+    "watch-css": "sass --watch static/scss/style.scss:static/css/main.css --source-map",
     "build-css-prod": "sass static/scss/style.scss static/css/main.css --style compressed --no-source-map",
     "check-sass": "sass --check static/scss/style.scss",
     "clean": "rm -rf static/css/main.css static/css/main.css.map",

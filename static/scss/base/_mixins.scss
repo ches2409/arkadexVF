@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:string";
+@use "variables";
+
 // ==========================================================================
 // MIXINS - SMACSS Abstracts
 // ==========================================================================
@@ -6,8 +11,8 @@
 
 // Mixin para media queries responsive
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
+  @if map.has-key(variables.$breakpoints, $breakpoint) {
+    @media (min-width: map.get(variables.$breakpoints, $breakpoint)) {
       @content;
     }
   } @else {
@@ -16,10 +21,10 @@
 }
 
 // Mixin para centrar elementos
-@mixin center-flex($direction: row) {
+@mixin center-flex($direction: row, $justify: left, $align: center) {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: $justify;
+  align-items: $align;
   flex-direction: $direction;
 }
 
@@ -41,19 +46,27 @@
     0 0 20px rgba($color, $intensity * 0.4);
 }
 
+// Mixin para resaltar textos
+@mixin highlight-text($color_base, $color_h) {
+  filter: drop-shadow(0 0 1px $color_base)
+          drop-shadow(0 0 1px $color_h)
+          drop-shadow(0 0 1px $color_h)
+}
+
+
 // Mixin para botones con efecto hover
 @mixin button-hover($bg-color, $hover-color, $text-color: white) {
   background-color: $bg-color;
   color: $text-color;
   border: 2px solid $bg-color;
-  transition: $transition-base;
+  transition: variables.$transition-base;
   cursor: pointer;
   
   &:hover {
     background-color: $hover-color;
     border-color: $hover-color;
     transform: translateY(-2px);
-    box-shadow: map-get($shadows, 'lg');
+    box-shadow: map.get(variables.$shadows, 'lg');
   }
   
   &:active {
@@ -62,14 +75,14 @@
 }
 
 // Mixin para cards con efecto gaming
-@mixin gaming-card($border-color: $accent-blue) {
-  background: rgba($primary-bg, 0.9);
+@mixin gaming-card($border-color: variables.$accent-blue) {
+  background: rgba(variables.$primary-bg, 0.9);
   border: 2px solid $border-color;
   border-radius: 0.5rem;
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
-  transition: $transition-base;
+  transition: variables.$transition-base;
   
   &::before {
     content: '';
@@ -118,9 +131,9 @@
 
 // Mixin para animaciones de pulso
 @mixin pulse-animation($color, $duration: 2s) {
-  animation: pulse-#{unique-id()} $duration infinite;
+  animation: pulse-#{string.unique-id()} $duration infinite;
   
-  @keyframes pulse-#{unique-id()} {
+  @keyframes pulse-#{string.unique-id()} {
     0%, 100% {
       box-shadow: 0 0 0 0 rgba($color, 0.7);
     }
@@ -174,7 +187,7 @@
 }
 
 // Mixin para scrollbar personalizado
-@mixin custom-scrollbar($thumb-color: $accent-blue, $track-color: rgba($primary-bg, 0.5)) {
+@mixin custom-scrollbar($thumb-color: variables.$accent-blue, $track-color: rgba(variables.$primary-bg, 0.5)) {
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -190,13 +203,13 @@
     border-radius: 0.25rem;
     
     &:hover {
-      background: lighten($thumb-color, 10%);
+      background: color.adjust($thumb-color, $lightness: 10%);
     }
   }
 }
 
 // Mixin para focus states accesibles
-@mixin focus-outline($color: $accent-blue) {
+@mixin focus-outline($color: variables.$accent-blue) {
   &:focus {
     outline: 2px solid $color;
     outline-offset: 2px;

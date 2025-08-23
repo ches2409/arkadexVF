@@ -1,9 +1,14 @@
 // ==========================================================================
 // Layout - Header
 // ==========================================================================
+@use '../base/variables';
+@use '../base/functions';
+@import '../base/mixins';
 
+/*
 .site-header {
-  background: var(--primary-color);
+  //background: var(--primary-color);
+  background: functions.random-color();
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -14,7 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 1rem;
   }
@@ -81,6 +86,120 @@
 
     &:last-child {
       border-bottom: none;
+    }
+  }
+}
+*/
+header{
+  //background-color: functions.random-color();
+  height: 100vh;
+  width: 100vw;
+}
+.hero{
+  display: grid;
+  grid-template-columns: 10% 90%;
+  align-items: center;
+  margin-left: 5rem;
+  height: 100%;
+  &__logo{
+    //background-color: functions.random-color();
+    background-image: url('/static/images/logoVertical.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10vw;
+    height: 80vh;
+  }
+  &__wrap{
+    //background-color: functions.random-color();
+    background-image: url('/static/images/hero_back_full.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+    width: 100%;
+    height: 100%;
+
+
+    .hero__container{
+      //background-color: black;
+      //mix-blend-mode: overlay;
+      padding: 0 5rem;
+      display: grid;
+      grid-template-rows: 15% 85%;
+      height: 100%;
+
+      .menu{
+          grid-row: 1 / 2;
+          z-index: 100;
+          //background-color: functions.random-color();
+        .nav{
+          //background-color: functions.random-color();
+          @include center-flex();
+          height: 100%;
+          gap: 4rem;
+
+          @media (max-width: 768px) {
+            display: none;
+          }
+        }
+        .nav-link {
+          display: flex;
+          gap: .5rem;
+          align-items: center;
+          padding: 0.5rem 0;
+          color: var(--light);
+          text-decoration: none;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--accent-pink);
+
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .nav-icon{
+            height: 1.5rem;
+            .partidas{
+              height: 2rem;
+            }
+          }
+        }
+      }
+        .text{
+        grid-row: 2 / -1;
+        z-index: 10;
+        //background-color: functions.random-color();
+
+          .call_action{
+            margin-top: 30rem;
+            //background-color: functions.random-color();
+            @include center-flex($direction:column,$justify:center );
+            padding: 1rem 0;
+            .action_text{
+              justify-items: center;
+              font-size: functions.font-size('2xl');
+              @include highlight-text($color_base:var(--accent-yellow),$color_h:var(--primary-bg))
+
+            }
+          }
+
+          .action_button{
+            display: flex;
+            gap: 2rem;
+            color: var(--primary-bg);
+
+            .button_register{
+              background-color: rgb(#DDFF00, 0.4);
+              color: var(--seccondary-bg);
+            }
+            .button_intro{
+              background-color: rgb(#00eaff, 0.4);
+            }
+          }
+      }
     }
   }
 }
