@@ -9,21 +9,23 @@
 
 
 .hero{
-  background-color: blue;
-  height: 100%;
-  width: 100%;
+  //background-color: blue;
+  height: 100vh;
+  //width: 100%;
   display: flex;
   flex-direction: column;
   &__logo{
-    background-color: #00eaff;
-    height: 20%;
+    //background-color: #00eaff;
+    width: 100%;
+    height: 20vh;
   }
   &__wrapper{
-    background-color: #DDFF00;
-    height: 80%;
-
+    //background-color: #DDFF00;
+    width: 100%;
+    height: 80vh;
+/*
     .box{
-      //background-color: rgba(functions.random-color(),0.5);
+      background-color: rgba(functions.random-color(),0.5);
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: repeat(4, 1fr );
@@ -61,8 +63,18 @@
         grid-row: 2/-1;
       }
     }
-
+*/
   }
+  //@include respond-to('sm'){
+  //  flex-direction: column;
+  //  &__logo{
+  //    background-color: palevioletred;
+  //  }
+  //  &__wrapper{
+  //    background-color: darkslateblue;
+  //  }
+  //}
+
 }
 
 // ================================================================
@@ -71,11 +83,14 @@
 // ==========================================================================
 // 360=>413
 // ==========================================================================
-@include mQ(xsS){
+@include respond-to(xs){
   .hero{
+    flex-direction: column;
     &__logo{
+      //background-color: palevioletred;
     }
     &__wrapper{
+      //background-color: darkslateblue;
     }
   }
 }
@@ -83,14 +98,13 @@
 // ==========================================================================
 // 414=>599
 // ==========================================================================
-@include mQ(smallS){
+@include respond-to(sm){
   .hero{
-    background-color: orange;
     &__logo{
-      background-color: seagreen;
+      //background-color: #27ae60;
     }
     &__wrapper{
-      background-color: darkslateblue;
+      //background-color: honeydew;
     }
   }
 }
@@ -98,71 +112,113 @@
 // ==========================================================================
 // 600=>759
 // ==========================================================================
-@include mQ(mediumS){
+@include respond-to(md){
   .hero{
-    background-color: pink;
+    //background-color: pink;
+    &__logo{
+      //background-color: hotpink;
+    }
+    &__wrapper{
+      //background-color: deeppink;
+    }
   }
 }
 
 // ==========================================================================
 // 760=>919
 // ==========================================================================
-@include mQ(wideS){
+@include respond-to(ws){
   .hero{
-    background-color: violet;
+    //background-color: darkgoldenrod;
+    &__logo{
+      //background-color: rosybrown;
+    }
+    &__wrapper{
+      //background-color: olive;
+    }
   }
 }
+
 
 // ==========================================================================
 // 920=>1365
 // ==========================================================================
-@include mQ(largeS){
+@include respond-to(lg){
   .hero{
-    background-color: red;
+    //background-color: red;
+    &__logo{
+      //background-color: navajowhite;
+    }
+    &__wrapper{
+      //background-color: darkcyan;
+    }
   }
 }
 
 // ==========================================================================
 // 1365=>1439
 // ==========================================================================
-@include mQ(xlS){
+@include respond-to(xl){
   .hero{
-    background-color: greenyellow;
+    flex-direction: row-reverse;
+    //background-color: greenyellow;
+    &__logo{
+      //background-color: royalblue;
+      width: 10vw;
+      height: 100%;
+    }
+    &__wrapper{
+      //background-color: teal;
+      height: 100%;
+    }
   }
 }
 
 // ==========================================================================
 // 1440=>1919
 // ==========================================================================
-@include mQ(dS){
+@include respond-to(ds){
   .hero{
-    background-color: darkcyan;
+    //background-color: darkcyan;
+    &__logo{
+      //background-color: olivedrab;
+      width: 20vw;
+    }
+    &__wrapper{
+      //background-color: green;
+    }
   }
 }
 
 // ==========================================================================
 // 1920=>2559
 // ==========================================================================
-@include mQ(hdS){
+@include respond-to(hd){
   .hero{
-    background-color: darkslateblue;
+    //background-color: darkslateblue;
+    &__logo{
+      //background-color: thistle;
+    }
+    &__wrapper{
+      //background-color: tomato;
+    }
   }
 }
 
 // ==========================================================================
 // 2560=>3839
 // ==========================================================================
-@include mQ(bgS){
+@include respond-to(xxl){
   .hero{
-    background-color: lightcoral;
+    //background-color: lightcoral;
   }
 }
 
 // ==========================================================================
 // 3840=>
 // ==========================================================================
-@include mQ(ckS){
+@include respond-to(ckS){
   .hero{
-    background-color: lightslategray;
+    //background-color: lightslategray;
   }
 }

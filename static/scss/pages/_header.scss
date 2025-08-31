@@ -1,15 +1,139 @@
+@import '../base/mixins';
 .hero{
   &__logo{
-    background-image: url('/static/images/logoVertical.png');
-    background-size: 60%;
+    background-image: url('/static/images/logoHorizontal.png');
+    background-size: 90%;
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center;
 
   }
   &__wrapper{
-    background-image: url('/static/images/hero_back_full.png');
-    background-size: contain;
+    background-image: url('/static/images/back_320.png');
+    background-size: 90%;
     background-repeat: no-repeat;
-    background-position: right bottom;
+    background-position: right center;
+  }
+}
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>413
+// ==========================================================================
+@include respond-to(xs){
+  .hero{
+    &__logo{
+    }
+    &__wrapper{
+      background-position: center 5%;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(sm){
+  .hero{
+    &__logo{
+    }
+    &__wrapper{
+      //background-position: center bottom;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(md){
+  .hero{
+    &__logo{
+    }
+    &__wrapper{
+      background-size: 80%;
+      background-position: 11vh 3vh;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(ws){
+  .hero{
+    &__logo{
+      background-size: 70%;
+    }
+    &__wrapper{
+      background-image: url('/static/images/back_760.png');
+      background-position: 13vh 3vh;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(lg){
+  .hero{
+    &__logo{
+      background-size: 50%;
+      background-position: right center;
+    }
+    &__wrapper{
+      background-size: 70%;
+      background-position: center 3vh;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(xl){
+  .hero{
+    &__logo{
+      background-image: url('/static/images/logoVertical.png');
+      background-size: 90%;
+      background-position: center;
+    }
+    &__wrapper{
+      background-image: url('/static/images/back_1366.png');
+      background-size: contain;
+      background-position: right 10vh;
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(ds){
+  .hero{
+    &__logo{
+      background-size: 80%;
+      background-position: center bottom;
+    }
+    &__wrapper{
+      background-image: url('/static/images/back_1440.png');
+    }
+  }
+}
+
+// ==========================================================================
+// 414=>599
+// ==========================================================================
+@include respond-to(hd){
+  .hero{
+    &__logo{
+      background-size: 65%;
+      background-position: center bottom;
+    }
+    &__wrapper{
+      background-image: url('/static/images/back_1920.png');
+      background-position: right 1vh;
+    }
   }
 }

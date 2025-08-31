@@ -87,7 +87,7 @@ $spacing: (
 );
 
 // Breakpoints para responsive design
-$breakpoints: (
+$breakpoints_originales: (
   'xs': 0,
   'sm': 576px,
   'md': 768px,
@@ -96,17 +96,20 @@ $breakpoints: (
   'xxl': 1400px
 );
 
-// tamaños para Responsive
-$xsScreen:      360px; //mobile default - pequeño (360 * 640) 23% de uso - variacion inferior (320 * 479)
-$smallScreen :  414px; //landscape mobile (480 * 599) - opcion2 (414 * 896)
-$mediumScreen:  600px; // (600 * 769)
-$wideScreen  :  760px; // tablet default (768 * 1024)
-$largeScreen :  920px;
-$xlScreen:      1366px; // portatil medio (1366 * 768) 12% de uso
-$defScreen:      1440px; // desktop default escritorio medio (1440 * 900) 3.2%
-$hdScreen:      1920px; // Pantalla mediana de 15 a 17 pulgadas en Full HD
-$bigScreen:      2560px; //Pantallas grandes en resolucion normal (HD) (2560 * 1440)
-$ckScreen:      3840px; //Pantallas grandes en resolucion 4k (3840*2160)
+$breakpoints: (
+  'xxs': 0,
+  'xs' : 361PX,
+  'sm' : 414px,
+  'md' : 600px,
+  'ws' : 760PX,
+  'lg' : 920px,
+  'xl' : 1366px,
+  'ds' : 1440px,
+  'hd' : 1920px,
+  'xxl': 2560px,
+  'ks' : 3840px
+);
+
 
 // Z-index layers
 $z-layers: (
