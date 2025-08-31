@@ -96,6 +96,18 @@ $breakpoints: (
   'xxl': 1400px
 );
 
+// tamaños para Responsive
+$xsScreen:      360px; //mobile default - pequeño (360 * 640) 23% de uso - variacion inferior (320 * 479)
+$smallScreen :  414px; //landscape mobile (480 * 599) - opcion2 (414 * 896)
+$mediumScreen:  600px; // (600 * 769)
+$wideScreen  :  760px; // tablet default (768 * 1024)
+$largeScreen :  920px;
+$xlScreen:      1366px; // portatil medio (1366 * 768) 12% de uso
+$defScreen:      1440px; // desktop default escritorio medio (1440 * 900) 3.2%
+$hdScreen:      1920px; // Pantalla mediana de 15 a 17 pulgadas en Full HD
+$bigScreen:      2560px; //Pantallas grandes en resolucion normal (HD) (2560 * 1440)
+$ckScreen:      3840px; //Pantallas grandes en resolucion 4k (3840*2160)
+
 // Z-index layers
 $z-layers: (
   'dropdown': 1000,

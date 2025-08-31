@@ -219,3 +219,59 @@
     outline: none;
   }
 }
+
+// Mixin para media query
+@mixin mQ($media){
+  @if $media==xsS{
+    @media screen and (min-width: variables.$xsScreen){
+      @content;
+    }
+  }
+  @else if $media==smallS{
+    @media screen and (min-width: variables.$smallScreen){
+      @content;
+    }
+  }
+
+  @else if $media==mediumS{
+    @media screen and (min-width: variables.$mediumScreen){
+      @content;
+    }
+  }
+  @else if $media==wideS {
+    @media screen and (min-width:variables.$wideScreen) {
+      @content;
+    }
+  }
+  @else if $media==largeS {
+    @media screen and (min-width:variables.$largeScreen) {
+      @content;
+    }
+  }
+  @else if $media==xlS {
+    @media screen and (min-width:variables.$xlScreen) {
+      @content;
+    }
+  }
+  @else if $media==dS {
+    @media screen and (min-width:variables.$defScreen) {
+      @content;
+    }
+  }
+  @else if $media==hdS{
+    @media screen and (min-width: variables.$hdScreen){
+      @content;
+    }
+  }
+
+  @else if $media==bgS{
+    @media screen and (min-width: variables.$bigScreen){
+      @content;
+    }
+  }
+  @else if $media==ckS{
+    @media screen and (min-width: variables.$ckScreen){
+      @content;
+    }
+  }
+}
