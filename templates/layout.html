@@ -2,6 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=no">
         <title>{% block title %}  {% endblock %} | Arkadex</title>
 
         <!---pagina de estilos propia--->
@@ -14,9 +15,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Bruno+Ace&family=Bruno+Ace+SC&family=Electrolize&display=swap" rel="stylesheet">
 
     </head>
-    <body>
+    <body ">
 
-        <main >
+        <!-- Incluir componente de navegación -->
+{#	    {% include 'components/navigation.html' %}#}
+
+	    <!-- Contenido principal -->
+
+        <main class="main-content" id="mainContent">
 
 
             <!-- Sistema de mensajes flash -->
@@ -35,7 +41,10 @@
             	
             {% endblock %}
 
+
         </main>
+        {#<script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+        {% block scripts %}{% endblock %}#}
 
     </body>
 </html>

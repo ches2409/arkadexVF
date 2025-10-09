@@ -8,9 +8,7 @@
 	<header>
 		<section class="hero" id="inicio">
 
-			<div class="hero__logo">
 
-			</div>
 
 			<div class="hero__wrapper">
 
@@ -18,15 +16,50 @@
 
 					<div class="box__menu">
 
-						<h2>Menu</h2>
+						<aside class="panel">
+							<nav class="menu"> {# navbar #}
+								<input type = "checkbox" id="menu-toggle">
+								<label for = "menu-toggle" class="menu-icon">
+									<span class="line"></span>
+									<span class="line"></span>
+									<span class="line"></span>
+{#									<div class="line"></div>#}
+{#									<div class="line"></div>#}
+{#									<div class="line"></div>#}
+								</label>
+
+
+								<ul class="menu__list"> {# nav-links #}
+									<li class="menu__item">
+										<img src = "/static/images/registro.png" alt = "registrate" class="nav-icon registro">
+										Regístrate
+									</li>
+
+									<li class="menu__item">
+										<img src = "/static/images/info.png" alt = "Informate" class="nav-icon info">
+										Infórmate
+									</li>
+
+									<li class="menu__item">
+										<img src = "/static/images/partidas.png" alt = "Ver partidas" class="nav-icon partidas">
+										Ver partidas
+									</li>
+
+									<li class="menu__item">
+										<img src = "/static/images/equipos.png" alt = "Ver equipos" class="nav-icon equipos">
+										Ver equipos
+									</li>
+							</ul>
+							</nav>
+						</aside>
 
 					</div>
 
 					<div class="box__join">
 
 						<div class="text-contain">
-							<h3 class="text-8xl text-accent-pink font-normal sp-tighter font-display line-none">Unete</h3>
-							<h3 class="text-4xl text-accent-pink font-normal sp-tighter font-display line-none">a la arena</h3>
+							<h3 class="text-prim text-accent-pink font-normal sp-tighter font-display line-none">Unete</h3>
+							<h3 class="text-sec text-accent-pink font-normal sp-tighter font-display line-none">a la arena</h3>
 						</div>
 
 						<button class="btn btn--icon btn-ghost">
@@ -37,13 +70,24 @@
 
 					</div>
 
-					<div class="box_action">
+					<div class="box__action">
 
-						<h2>actions</h2>
+						<div class="action-contain">
+							<p>La batalla comienza en tu mente, el kaos en tus venas.</p>
+							<p>¿Estas listo para liberar todo tu poder?</p>
+						</div>
 
 					</div>
 
 				</div>
+
+			</div>
+
+			<div class="hero__logo">
+
+			</div>
+
+			<div class="hero__back">
 
 			</div>
 <!--

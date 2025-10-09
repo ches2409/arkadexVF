@@ -1,14 +1,15 @@
 @use "sass:color";
-@use "functions";
-@use "mixins";
+@use "sass:map";
+@use "sass:string";
 @use "variables";
+@use "mixins";
+
 
 // ==========================================================================
 // RESET/NORMALIZE - SMACSS Base
 // ==========================================================================
 // Este archivo contiene los estilos base y reset para normalizar
 // el comportamiento entre navegadores
-
 // Variables locales para el reset
 $base-font-family: variables.$font-body;
 $base-font-size: 16px;
@@ -69,19 +70,19 @@ h1, h2, h3, h4, h5, h6 {
   font-family: variables.$font-primary;
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: functions.spacing('4');
+  margin-bottom: spacing('4');
   color: variables.$text-main;
 }
 
-h1 { font-size: functions.font-size('5xl'); }
-h2 { font-size: functions.font-size('4xl'); }
-h3 { font-size: functions.font-size('3xl'); }
-h4 { font-size: functions.font-size('2xl'); }
-h5 { font-size: functions.font-size('xl'); }
-h6 { font-size: functions.font-size('lg'); }
+h1 { font-size: font-size('5xl'); }
+h2 { font-size: font-size('4xl'); }
+h3 { font-size: font-size('3xl'); }
+h4 { font-size: font-size('2xl'); }
+h5 { font-size: font-size('xl'); }
+h6 { font-size: font-size('lg'); }
 
 p {
-  margin-bottom: functions.spacing('4');
+  margin-bottom: spacing('4');
   line-height: 1.7;
 }
 
@@ -92,7 +93,7 @@ a {
   transition: variables.$transition-base;
   
   &:hover {
-    color: color.adjust(variables.$accent-blue, $lightness: 15%);
+    color: color.scale(variables.$accent-blue, $lightness: 15%);
     text-decoration: underline;
   }
   
@@ -103,12 +104,12 @@ a {
 
 // Listas
 ul, ol {
-  margin-bottom: functions.spacing('4');
-  padding-left: functions.spacing('6');
+  margin-bottom: spacing('4');
+  padding-left: spacing('6');
 }
 
 li {
-  margin-bottom: functions.spacing('2');
+  margin-bottom: spacing('2');
 }
 
 // Eliminar estilos de lista cuando sea necesario
@@ -158,9 +159,9 @@ textarea,
 select {
   background-color: rgba(variables.$text-main, 0.1);
   border: 2px solid rgba(variables.$text-gray, 0.3);
-  border-radius: functions.radius('base');
+  border-radius: radius('base');
   color: variables.$text-main;
-  padding: functions.spacing('3') functions.spacing('4');
+  padding: spacing('3') spacing('4');
   transition: variables.$transition-base;
   
   &:focus {
@@ -184,7 +185,7 @@ table {
 
 th,
 td {
-  padding: functions.spacing('3');
+  padding: spacing('3');
   text-align: left;
   border-bottom: 1px solid rgba(variables.$text-gray, 0.2);
 }
@@ -208,16 +209,16 @@ code {
   background-color: rgba(variables.$accent-green, 0.1);
   color: variables.$accent-green;
   padding: 0.2em 0.4em;
-  border-radius: functions.radius('sm');
+  border-radius: radius('sm');
 }
 
 pre {
   background-color: rgba(variables.$primary-bg, 0.8);
   border: 1px solid rgba(variables.$text-gray, 0.2);
-  border-radius: functions.radius('base');
-  padding: functions.spacing('4');
+  border-radius: radius('base');
+  padding: spacing('4');
   overflow-x: auto;
-  margin-bottom: functions.spacing('4');
+  margin-bottom: spacing('4');
   
   code {
     background: none;
@@ -228,8 +229,8 @@ pre {
 // Elementos de cita
 blockquote {
   border-left: 4px solid variables.$accent-blue;
-  padding-left: functions.spacing('4');
-  margin: functions.spacing('6') 0;
+  padding-left: spacing('4');
+  margin: spacing('6') 0;
   font-style: italic;
   color: variables.$text-gray;
 }
@@ -239,7 +240,7 @@ hr {
   border: none;
   height: 2px;
   background: linear-gradient(90deg, transparent, variables.$accent-blue, transparent);
-  margin: functions.spacing('8') 0;
+  margin: spacing('8') 0;
 }
 
 // Elementos ocultos

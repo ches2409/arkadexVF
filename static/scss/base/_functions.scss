@@ -156,7 +156,8 @@
 
 // Función para generar colores aleatorios (útil para prototipado)
 @function random-color() {
-  @return hsl(math.random(360), 50% + math.random(50%), 50% + math.random(25%));
+  //@return hsl(math.random(360), 50% + math.random(50%), 50% + math.random(25%));
+  @return hsl(math.random()*360, 50% + math.random()*50%, 50% + math.random()*25%);
 }
 
 // Función para interpolar entre dos valores

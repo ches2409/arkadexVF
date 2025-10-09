@@ -5,52 +5,75 @@
 @use '../base/variables';
 @use '../base/functions';
 
-@import '../base/mixins';
+@use '../base/mixins';
 
 
 .hero{
   //background-color: blue;
   height: 100vh;
-  //width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: visible;
+  position: relative;
   &__logo{
     //background-color: #00eaff;
     width: 100%;
     height: 20vh;
+    z-index: 100;
   }
   &__wrapper{
     //background-color: #DDFF00;
     width: 100%;
     height: 80vh;
-/*
     .box{
-      background-color: rgba(functions.random-color(),0.5);
+      //background-color: rgba(functions.random-color(),0.5);
+      //background-color: orangered;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(4, 1fr );
+      grid-template-rows: repeat(12, 1fr );
       width: 100%;
       height: 100%;
       &__menu{
         //background-color: rgba(functions.random-color(),0.5);
-        grid-column: 1/5;
-        grid-row: 1/2;
-        display: flex;
-        align-items: center;
+        //background-color: fuchsia;
+        grid-column: 1/-1;
+        grid-row: 1/4;
+        .panel{
+          //background-color: lightskyblue;
+          //width: 60%;
+          //height: 100%;
+          //display: flex;
+          //align-items: center;
+          //justify-content: center;
+          //margin: 1.5rem 0 0 0;
+        }
       }
       &__join{
         //background-color: rgba(functions.random-color(),0.5);
-        margin-top: 4rem;
-        grid-column: 5/-1;
-        grid-row: 1/2;
+        //background-color: #2980b9;
+        grid-column: 2/-1;
+        grid-row: 2/4;
         display: flex;
-        //gap: 1rem;
         align-items: center;
-        //flex-direction: column;
-        //justify-content: center;
+        justify-content: center;
+        .text-contain{
+          //background-color: gold;
+          display: flex;
+          flex-direction: column;
+          gap: .5rem;
+          .text-prim{
+            font-size: 2.5rem;
+          }
+          .text-sec{
+            font-size: 1.6rem;
+          }
+        }
         .btn{
-          //border-radius: 100%;
           border: none;
+          .icon{
+            width: 4rem;
+            height: 4rem;
+          }
           &:hover {
             transform: translateY(-3px);
             box-shadow: 0 0px 1px rgba(0, 0, 0, 0.01);
@@ -58,22 +81,36 @@
         }
       }
       &__action{
-        background-color: #ff8a00;
+        //background-color: #ff8a00;
         grid-column: 1/-1;
-        grid-row: 2/-1;
+        grid-row: 6/10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .action-contain{
+          //background-color: orangered;
+          margin: 0 4rem;
+          text-align: center;
+        }
       }
     }
-*/
+
   }
-  //@include respond-to('sm'){
-  //  flex-direction: column;
-  //  &__logo{
-  //    background-color: palevioletred;
-  //  }
-  //  &__wrapper{
-  //    background-color: darkslateblue;
-  //  }
-  //}
+  &__back{
+    //background-color: darkviolet;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    z-index: 99;
+
+    background-image: url('/static/images/jinx_1.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
 
 }
 
@@ -81,38 +118,82 @@
 // ======================= MEDIA QUERIES ==========================
 // ================================================================
 // ==========================================================================
-// 360=>413
+// 360=>
 // ==========================================================================
-@include respond-to(xs){
+@include mixins.respond-to(xs){
   .hero{
+    //background-color: #27ae60;
     flex-direction: column;
     &__logo{
       //background-color: palevioletred;
     }
     &__wrapper{
       //background-color: darkslateblue;
+      .box{
+        //background-color: firebrick;
+        &__join{
+          //background-color: palegoldenrod;
+          grid-row: 1/3;
+        }
+        &__action{
+          //background-color: powderblue;
+          grid-row: 4/10;
+          .action-contain{
+            margin: 0 6rem 0 4rem;
+          }
+
+        }
+
+      }
+    }
+    &__back{
+      //background-color: blueviolet;
+      //height: 70%;
+      background-size: 88%;
     }
   }
 }
 
 // ==========================================================================
-// 414=>599
+// 414=>
 // ==========================================================================
-@include respond-to(sm){
+@include mixins.respond-to(sm){
   .hero{
+    //background-color: #DDFF00;
     &__logo{
       //background-color: #27ae60;
     }
     &__wrapper{
       //background-color: honeydew;
+      .box{
+        //background-color: firebrick;
+        &__join{
+          //background-color: palegoldenrod;
+          padding: 0 0 0 8rem;
+        }
+        &__action{
+          //background-color: powderblue;
+          .action-contain{
+            margin: 0 10rem 0 6rem;
+          }
+
+        }
+
+      }
+
+    }
+    &__back{
+      //background-color: blueviolet;
+      //height: 70%;
+      background-size: 60%;
     }
   }
 }
 
 // ==========================================================================
-// 600=>759
+// 600=>
 // ==========================================================================
-@include respond-to(md){
+@include mixins.respond-to(md){
   .hero{
     //background-color: pink;
     &__logo{
@@ -120,14 +201,38 @@
     }
     &__wrapper{
       //background-color: deeppink;
+      .box{
+        //background-color: firebrick;
+        &__join{
+          //background-color: palegoldenrod;
+          //background-color: rgba(functions.random-color(),0.5);
+          grid-column: 3/-1;
+          grid-row: 1/4;
+          padding: 0 0 1rem 8rem;
+        }
+        &__action{
+          //background-color: rgba(purple,0.5);
+          grid-row: 5/11;
+          .action-contain{
+            margin: 0 9rem 0 10rem;
+          }
+
+        }
+
+      }
+    }
+    &__back{
+      //background-color: blueviolet;
+      //height: 70%;
+      background-size: 50%;
     }
   }
 }
 
 // ==========================================================================
-// 760=>919
+// 760=>
 // ==========================================================================
-@include respond-to(ws){
+@include mixins.respond-to(ws){
   .hero{
     //background-color: darkgoldenrod;
     &__logo{
@@ -135,6 +240,34 @@
     }
     &__wrapper{
       //background-color: olive;
+      .box{
+        //background-color: firebrick;
+        &__join{
+          //background-color: palegoldenrod;
+          //background-color: rgba(functions.random-color(),0.5);
+          grid-column: 4/-1;
+          padding: 0 0 0 4rem;
+        }
+        &__action{
+          //background-color: rgba(purple,0.5);
+          grid-row: 6/10;
+          .action-contain{
+            //margin: 0 9rem 0 10rem;
+            p{
+              font-size: 1.4rem;
+            }
+          }
+
+        }
+
+      }
+
+    }
+    &__back{
+      //background-color: blueviolet;
+      background-image: url('/static/images/jinx_2.png');
+      background-position: bottom right;
+      background-size: 40%;
     }
   }
 }
@@ -143,7 +276,7 @@
 // ==========================================================================
 // 920=>1365
 // ==========================================================================
-@include respond-to(lg){
+@include mixins.respond-to(lg){
   .hero{
     //background-color: red;
     &__logo{
@@ -151,14 +284,39 @@
     }
     &__wrapper{
       //background-color: darkcyan;
+      .box{
+        //background-color: firebrick;
+        &__join{
+          //background-color: palegoldenrod;
+          //background-color: rgba(functions.random-color(),0.5);
+          padding: 0 2rem 0 0;
+          .text-contain{
+            //background-color: gold;
+            gap: .7rem;
+          }
+        }
+        &__action{
+          //background-color: rgba(purple,0.5);
+          grid-row: 7/11;
+          .action-contain{
+            margin: 0 15rem 0 12rem;
+          }
+
+        }
+
+      }
+    }
+    &__back{
+      //background-color: blueviolet;
+      background-size: 28%;
     }
   }
 }
 
 // ==========================================================================
-// 1365=>1439
+// 1366=>1439
 // ==========================================================================
-@include respond-to(xl){
+@include mixins.respond-to(xl){
   .hero{
     flex-direction: row-reverse;
     //background-color: greenyellow;
@@ -170,14 +328,79 @@
     &__wrapper{
       //background-color: teal;
       height: 100%;
+      .box{
+        //background-color: firebrick;
+        &__menu{
+          //background-color: rgba(functions.random-color(),0.5);
+          //background-color: fuchsia;
+          //grid-column: 1/-1;
+          //grid-row: 1/4;
+          .panel{
+            //background-color: lightskyblue;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0 0 0;
+          }
+        }
+        &__join{
+          //background-color: palegoldenrod;
+          //background-color: rgba(functions.random-color(),0.5);
+          grid-column: 5/-1;
+          grid-row: 2/5;
+          padding: 0 2.5rem 0 0;
+          .text-contain{
+            //background-color: gold;
+            gap: .7rem;
+            .text-prim{
+              font-size: 3.4rem;
+            }
+            .text-sec{
+              font-size: 2.2rem;
+            }
+          }
+          .btn{
+            .icon{
+              width: 6rem;
+              height: 6rem;
+            }
+            &:hover {
+              transform: scale(1.1);
+              box-shadow: 0 0px 1px rgba(0, 0, 0, 0.01);
+            }
+          }
+        }
+        &__action{
+          //background-color: rgba(purple,0.5);
+          grid-column: 1/6;
+          grid-row: 9/10;
+          .action-contain{
+            margin: 0 auto;
+          }
+
+        }
+
+      }
     }
+
+    &__back{
+    //background-color: darkviolet;
+      width: 0;
+      height: 0;
+      z-index: 0;
+
+      background-image: none;
+    }
+
   }
 }
 
 // ==========================================================================
 // 1440=>1919
 // ==========================================================================
-@include respond-to(ds){
+@include mixins.respond-to(ds){
   .hero{
     //background-color: darkcyan;
     &__logo{
@@ -186,6 +409,64 @@
     }
     &__wrapper{
       //background-color: green;
+      .box{
+        //background-color: firebrick;
+        &__menu{
+          //background-color: rgba(functions.random-color(),0.5);
+          //background-color: fuchsia;
+          //grid-column: 1/-1;
+          grid-row: 1/3;
+          .panel{
+            //background-color: lightskyblue;
+            //width: 60%;
+            height: 90%;
+            //display: flex;
+            //align-items: center;
+            //justify-content: center;
+            margin: 0;
+          }
+        }
+        &__join{
+          //background-color: palegoldenrod;
+          //background-color: rgba(functions.random-color(),0.5);
+          //grid-column: 5/-1;
+          grid-row: 1/4;
+          padding: 0 4rem 0 0;
+          .text-contain{
+            //background-color: gold;
+            //gap: .7rem;
+            .text-prim{
+              font-size: 3.7rem;
+            }
+            .text-sec{
+              font-size: 2.4rem;
+            }
+          }
+          .btn{
+            .icon{
+              //width: 6rem;
+              //height: 6rem;
+            }
+            &:hover {
+              //transform: scale(1.1);
+              //box-shadow: 0 0px 1px rgba(0, 0, 0, 0.01);
+            }
+          }
+        }
+        &__action{
+          //background-color: rgba(purple,0.5);
+          //grid-column: 1/6;
+          //grid-row: 9/10;
+          .action-contain{
+            //margin: 0 auto;
+            p{
+              font-size: 2rem;
+            }
+          }
+
+        }
+
+      }
     }
   }
 }
@@ -193,7 +474,7 @@
 // ==========================================================================
 // 1920=>2559
 // ==========================================================================
-@include respond-to(hd){
+@include mixins.respond-to(hd){
   .hero{
     //background-color: darkslateblue;
     &__logo{
@@ -208,7 +489,7 @@
 // ==========================================================================
 // 2560=>3839
 // ==========================================================================
-@include respond-to(xxl){
+@include mixins.respond-to(xxl){
   .hero{
     //background-color: lightcoral;
   }
@@ -217,7 +498,7 @@
 // ==========================================================================
 // 3840=>
 // ==========================================================================
-@include respond-to(ckS){
+@include mixins.respond-to(ks){
   .hero{
     //background-color: lightslategray;
   }
