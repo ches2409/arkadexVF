@@ -1,0 +1,22 @@
+{# Macro para renderizar una card a partir de un diccionario `card` #}
+{% macro render_card(card) %}
+<div class="card">
+    {% if card.image %}
+        <img src="{{ url_for('static', filename=card.image) }}" alt="{{ card.title }}" class="card-image">
+    {% endif %}
+
+    <div class="card__hero">
+        <div class="image_card"></div>
+    </div>
+
+    <div class="card-content">
+        <h3 class="card-title">{{ card.title }}</h3>
+        <p class="card-description">{{ card.description }}</p>
+        <p class="card-summary">{{ card.summary }}</p>
+        {% if card.link %}
+            <a href="{{ card.link }}" class="card-button">{{ card.button_text or 'Learn More' }}</a>
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}
+

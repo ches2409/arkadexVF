@@ -1,0 +1,23 @@
+{% import 'components/card_macro.html' as components %}
+
+<section class="cards-section">
+    {% if cards %}
+        {% for card in cards %}
+            {{ components.render_card(card) }}
+        {% endfor %}
+    {% else %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/card1.jpg') }}" alt="Card Image 1" class="card-image">
+
+            <div class="card__hero">
+                <div class="image_card"></div>
+            </div>
+
+            <div class="card-content">
+                <h3 class="card-title">Card Title 1</h3>
+                <p class="card-description">This is a description for card 1.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+    {% endif %}
+</section>
