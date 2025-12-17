@@ -1,0 +1,65 @@
+// ==========================================================================
+// Layout - About
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+.about{
+  //background-color: red;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &__title{
+    //background-color: orangered;
+    height: 10vh;
+  }
+  &__header{
+    //background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    .image_header{
+        //background-image: url('/static/images/header_about.png');
+        //background-size: contain;
+        //background-repeat: no-repeat;
+        //background-position: center;
+        //height: 70%;
+      }
+    .header_text{
+      //background-color: plum;
+      height: 30%;
+    }
+  }
+  &__contain{
+    //background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    .contain_text{
+      //background-color: mediumblue;
+      height: 80%;
+
+    }
+    .contain_icon{
+      //background-color: yellowgreen;
+      height: 20%;
+      display: flex;
+      .icon_action{
+        background-image: url('/static/images/registro2.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        width: 30%;
+        height: 100%;
+      }
+      .text_action{
+        //background-color: orange;
+        height: 100%;
+        width: 70%;
+      }
+    }
+  }
+}

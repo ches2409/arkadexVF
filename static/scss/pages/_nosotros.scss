@@ -1,0 +1,60 @@
+// ==========================================================================
+// PAGE - About
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+.about{
+  //background-color: red;
+  &__title{
+    //background-color: orangered;
+    text-align: center;
+    align-content: center;
+    font-size: 1.2rem;
+    font-family: variables.$font-primary;
+    padding: 0 2rem;
+  }
+  &__header{
+    //background-color: cadetblue;
+    padding: 2rem;
+    .image_header{
+        background-image: url('/static/images/header_about.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 70%;
+      }
+    .header_text{
+      //background-color: #27ae60;
+      text-align: center;
+      align-content: center;
+      color: variables.$accent-green ;
+    }
+  }
+  &__contain{
+    //background-color: blueviolet;
+    .contain_text{
+      text-align: justify;
+      align-content: center;
+      padding: 0 2.5rem;
+      .resaltes{
+        color: variables.$accent-blue;
+      }
+    }
+    .contain_icon{
+      //background-color: yellowgreen;
+      padding: 1rem 0;
+      .icon_action{
+        margin-right: 0.5rem;
+      }
+      .text_action{
+        align-content: center;
+        padding-left: 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
