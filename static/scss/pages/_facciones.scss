@@ -1,0 +1,112 @@
+// ==========================================================================
+// section - Factions
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+.factions{
+  &__image{
+    //background-color: mediumaquamarine;
+    background-image: url('/static/images/facciones_mov.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 90%;
+    height: 50vh;
+    margin: functions.spacing('1') auto;
+  }
+  &__title{
+    //background-color: tomato;
+    text-align: center;
+    align-content: center;
+    font-size: functions.font-size('2xl');
+    font-family: variables.$font-primary;
+    color: variables.$accent-blue;
+    @include mixins.neon-text(variables.$accent-blue, 0.3);
+    margin: functions.spacing('6');
+    .title_secondary{
+      font-size: functions.font-size('xl');
+      margin: functions.spacing('6') 0;
+    }
+  }
+}
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>
+// ==========================================================================
+@include mixins.respond-to(xs){
+  .factions{
+    //background-color: orangered;
+
+  }
+}
+
+// ==========================================================================
+// 414=>
+// ==========================================================================
+@include mixins.respond-to(sm){
+  .factions{
+    background-color: palegoldenrod;
+  }
+}
+
+// ==========================================================================
+// 600=>
+// ==========================================================================
+@include mixins.respond-to(md){
+  .factions{
+    background-color: darkgreen;
+  }
+}
+
+// ==========================================================================
+// 760=>
+// ==========================================================================
+@include mixins.respond-to(ws){
+  .factions{
+    background-color: blueviolet;
+  }
+}
+
+// ==========================================================================
+// 920=>
+// ==========================================================================
+@include mixins.respond-to(lg){
+  .factions{
+    background-color: chartreuse;
+  }
+}
+
+// ==========================================================================
+// 1366=>
+// ==========================================================================
+@include mixins.respond-to(xl){
+  .factions{
+    background-color: fuchsia;
+  }
+}
+
+// ==========================================================================
+// 1440=>
+// ==========================================================================
+@include mixins.respond-to(ds){
+  .factions{
+    background-color: deeppink;
+  }
+}
+
+// ==========================================================================
+// 1920=>
+// ==========================================================================
+@include mixins.respond-to(hd){
+  .factions{
+    background-color: honeydew;
+  }
+}
