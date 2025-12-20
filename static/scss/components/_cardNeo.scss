@@ -1,0 +1,24 @@
+@use "../base/functions";
+@use "../base/mixins";
+@use "../base/variables";
+
+// ==========================================================================
+// CARDS - SMACSS Components
+// ==========================================================================
+// Este archivo contiene todos los estilos para cards del proyecto
+// Diseñados específicamente para el tema gaming de Arkadex
+
+// Card base para facciones
+
+.cardNeo {
+  background-color: #9b59b6;
+  //@include mixins.gaming-card(variables.$side-purple);
+  //display: flex;
+  //flex-direction: column;
+  //background: rgba(variables.$primary-bg, 0.9);
+  //backdrop-filter: blur(15px);
+  //margin-bottom: functions.spacing('6');
+  //
+  //// Animación de entrada
+  //@include mixins.fade-in-up();
+}

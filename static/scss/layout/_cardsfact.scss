@@ -1,0 +1,195 @@
+// ==========================================================================
+// Layout - About
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+.cards-section{
+    //background-color: lightgray;
+    margin: functions.spacing('8') functions.spacing('8');
+    display: block;
+}
+.cardNeo {
+  //background-color: #9b59b6;
+  @include mixins.gaming-card(variables.$side-purple);
+  display: flex;
+  flex-direction: column;
+  background: rgba(variables.$primary-bg, 0.9);
+  backdrop-filter: blur(15px);
+  margin-bottom: functions.spacing('8');
+  //margin: functions.spacing('6') functions.spacing('7');
+
+  // Animación de entrada
+  @include mixins.fade-in-up();
+  &__hero {
+    //background-color: darkgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 160px;
+    height: auto;
+  }
+  &__hero .image_card,
+  &__hero img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  &__content {
+    //background-color: orangered;
+    padding: functions.spacing('4');
+    color: variables.$text-main;
+    align-content: center;
+    .card-title{
+      font-size: functions.font-size('xl');
+      margin-bottom: functions.spacing('4');
+      text-align: center;
+    }
+    .card-description{
+      font-size: functions.font-size('base');
+      //line-height: 1.6;
+      text-align: center;
+    }
+    .card-summary{
+      margin-top: functions.spacing('4');
+      font-size: functions.font-size('sm');
+      font-style: italic;
+      text-align: justify;
+      color: variables.$accent-blue;
+    }
+    .card-button{
+      margin-top: functions.spacing('6');
+      padding: functions.spacing('3');
+      font-size: functions.font-size('base');
+      display: block;
+      text-align: center;
+      color: variables.$accent-green;
+    }
+  }
+}
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>
+// ==========================================================================
+@include mixins.respond-to(xs){
+  .cardNeo{
+    //background-color: #FFDD00;
+  }
+}
+
+// ==========================================================================
+// 414=>
+// ==========================================================================
+@include mixins.respond-to(sm){
+  .cardNeo{
+    //background-color: #DDFF90;
+
+  }
+}
+
+// ==========================================================================
+// 600=>
+// ==========================================================================
+@include mixins.respond-to(md){
+  .cardNeo{
+    //background-color: pink;
+    flex-direction: row;
+    //width: 50%;
+
+  }
+}
+
+// ==========================================================================
+// 760=>
+// ==========================================================================
+@include mixins.respond-to(ws){
+  .cardNeo{
+    //background-color: darkgoldenrod;
+
+  }
+}
+
+
+// ==========================================================================
+// 920=>1365
+// ==========================================================================
+@include mixins.respond-to(lg){
+  .cards-section{
+    margin: functions.spacing('8') functions.spacing('2');
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .cardNeo{
+    //background-color: red;
+    width: 45%;
+    flex-wrap: wrap;
+
+
+  }
+}
+
+// ==========================================================================
+// 1366=>1439
+// ==========================================================================
+@include mixins.respond-to(xl){
+  .cardNeo{
+    //background-color: greenyellow;
+
+  }
+}
+
+// ==========================================================================
+// 1440=>1919
+// ==========================================================================
+@include mixins.respond-to(ds){
+  .cardNeo{
+    //background-color: darkcyan;
+
+  }
+}
+
+// ==========================================================================
+// 1920=>2559
+// ==========================================================================
+@include mixins.respond-to(hd){
+  .cardNeo{
+    //background-color: darkslateblue;
+    height: 50vh;
+    flex-wrap: nowrap;
+    &__hero{
+      //background-color: palegoldenrod;
+      width: auto;
+      height: 100%;
+    }
+
+  }
+}
+
+// ==========================================================================
+// 2560=>3839
+// ==========================================================================
+@include mixins.respond-to(xxl){
+  .cardNeo{
+    background-color: lightcoral;
+  }
+}
+
+// ==========================================================================
+// 3840=>
+// ==========================================================================
+@include mixins.respond-to(ks){
+  .cardNeo{
+    background-color: lightslategray;
+  }
+}
