@@ -9,17 +9,25 @@
 
 .about{
   //background-color: red;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
   &__title{
     //background-color: orangered;
     text-align: center;
     align-content: center;
-    font-size: 1.2rem;
+    font-size: functions.font-size('2xl');
     font-family: variables.$font-primary;
+    color: variables.$accent-blue;
+    @include mixins.neon-text(variables.$accent-blue, 0.3);
     padding: 0 2rem;
+    width: 100%;
   }
   &__header{
     //background-color: cadetblue;
     padding: 2rem;
+    width: 100%;
     .image_header{
         background-image: url('/static/images/header_about.png');
         background-size: contain;
@@ -36,6 +44,7 @@
   }
   &__contain{
     //background-color: blueviolet;
+    width: 100%;
     .contain_text{
       text-align: justify;
       align-content: center;
@@ -56,5 +65,112 @@
         font-size: 1.5rem;
       }
     }
+  }
+}
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>
+// ==========================================================================
+@include mixins.respond-to(xs){
+  .about{
+    //background-color: orangered;
+
+  }
+}
+
+// ==========================================================================
+// 414=>
+// ==========================================================================
+@include mixins.respond-to(sm){
+  .about{
+    //background-color: palegoldenrod;
+  }
+}
+
+// ==========================================================================
+// 600=>
+// ==========================================================================
+@include mixins.respond-to(md){
+  .about{
+    //background-color: darkgreen;
+  }
+}
+
+// ==========================================================================
+// 760=>
+// ==========================================================================
+@include mixins.respond-to(ws){
+  .about{
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 50vh;
+    &__title{
+      width: 100%;
+      height: 20%;
+      font-size: functions.font-size('3xl');
+    }
+    &__header{
+      width: 40%;
+      height: 80%;
+      .image_header{
+      }
+    }
+    &__contain{
+      width: 60%;
+      height: 80%;
+    }
+  }
+}
+
+// ==========================================================================
+// 920=>
+// ==========================================================================
+@include mixins.respond-to(lg){
+  .about{
+    //background-color: chartreuse;
+  }
+}
+
+// ==========================================================================
+// 1366=>
+// ==========================================================================
+@include mixins.respond-to(xl){
+  .about{
+    &__title{
+      font-size: functions.font-size('4xl');
+    }
+    &__header{
+      width: 40%;
+      padding-left:15rem;
+      justify-content: center;
+      .image_header{
+        height: 40%;
+      }
+    }
+    &__contain{
+      width: 60%;
+    }
+  }
+}
+
+// ==========================================================================
+// 1440=>
+// ==========================================================================
+@include mixins.respond-to(ds){
+  .about{
+    &__title{
+      font-size: functions.font-size('5xl');
+    }
+  }
+}
+
+// ==========================================================================
+// 1920=>
+// ==========================================================================
+@include mixins.respond-to(hd){
+  .about{
   }
 }
