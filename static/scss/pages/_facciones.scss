@@ -8,6 +8,8 @@
 @use '../base/mixins';
 
 .factions{
+  display: flex;
+  flex-direction: column;
   &__image{
     //background-color: mediumaquamarine;
     background-image: url('/static/images/facciones_mov.png');
@@ -53,7 +55,7 @@
 // ==========================================================================
 @include mixins.respond-to(sm){
   .factions{
-    background-color: palegoldenrod;
+    //background-color: palegoldenrod;
   }
 }
 
@@ -62,7 +64,7 @@
 // ==========================================================================
 @include mixins.respond-to(md){
   .factions{
-    background-color: darkgreen;
+    //background-color: darkgreen;
   }
 }
 
@@ -71,7 +73,7 @@
 // ==========================================================================
 @include mixins.respond-to(ws){
   .factions{
-    background-color: blueviolet;
+    //background-color: blueviolet;
   }
 }
 
@@ -80,7 +82,37 @@
 // ==========================================================================
 @include mixins.respond-to(lg){
   .factions{
-    background-color: chartreuse;
+    //background-color: chartreuse;
+    flex-direction: row;
+    flex-wrap: wrap;
+      &__image{
+      //background-color: mediumaquamarine;
+      background-image: url('/static/images/facciones.png');
+      //background-size: contain;
+      //background-repeat: no-repeat;
+      //background-position: center;
+
+      width: 50%;
+      height: 50vh;
+      margin: functions.spacing('1') auto;
+    }
+    .content-factions{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    &__title{
+      //background-color: oldlace;
+      width: 100%;
+      font-size: functions.font-size('3xl');
+    }
+    &__container{
+      //background-color: forestgreen;
+      width: 100%;
+    }
   }
 }
 
