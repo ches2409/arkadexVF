@@ -1,0 +1,117 @@
+// ==========================================================================
+// section - Factions
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+
+.estadistics{
+  //background-color: lightcoral;
+  height: 150vh;
+  margin: functions.spacing('16') 0;
+  &__backgroundTop{
+    //background-color: tomato;
+    height:50%;
+    //width: 100%;
+    background-image: url('/static/images/estad_superior.png');
+    background-size: 100% 70%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin: 0 functions.spacing('16');
+  }
+    &__backgroundBot{
+        //background-color: mediumaquamarine;
+        height:50%;
+        //width: 100%;
+        background-image: url('/static/images/estad_inferior.png');
+        background-size: 100% 70%;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        margin: 0 functions.spacing('16');
+    }
+}
+
+
+
+
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>
+// ==========================================================================
+@include mixins.respond-to(xs){
+  .promo{
+    //background-color: orangered;
+
+  }
+}
+
+// ==========================================================================
+// 414=>
+// ==========================================================================
+@include mixins.respond-to(sm){
+  .promo{
+    //background-color: palegoldenrod;
+  }
+}
+
+// ==========================================================================
+// 600=>
+// ==========================================================================
+@include mixins.respond-to(md){
+  .promo{
+    //background-color: darkgreen;
+  }
+}
+
+// ==========================================================================
+// 760=>
+// ==========================================================================
+@include mixins.respond-to(ws){
+  .promo{
+    //background-color: peru;
+  }
+}
+
+// ==========================================================================
+// 920=>
+// ==========================================================================
+@include mixins.respond-to(lg){
+  .promo{
+    //background-color: chartreuse;
+  }
+}
+
+// ==========================================================================
+// 1366=>
+// ==========================================================================
+@include mixins.respond-to(xl){
+  .promo{
+    //background-color: navajowhite;
+
+
+  }
+}
+
+// ==========================================================================
+// 1440=>
+// ==========================================================================
+@include mixins.respond-to(ds){
+  .promo{
+    //background-color: lightcoral;
+  }
+}
+
+// ==========================================================================
+// 1920=>
+// ==========================================================================
+@include mixins.respond-to(hd){
+  .promo{
+    //background-color: lightslategray;
+  }
+}
