@@ -88,13 +88,9 @@
       &__image{
       //background-color: mediumaquamarine;
       background-image: url('/static/images/facciones.png');
-      //background-size: contain;
-      //background-repeat: no-repeat;
-      //background-position: center;
 
       width: 50%;
-      height: 50vh;
-      margin: functions.spacing('1') auto;
+      //height: 50vh;
     }
     .content-factions{
       width: 50%;
@@ -121,7 +117,7 @@
 // ==========================================================================
 @include mixins.respond-to(xl){
   .factions{
-    background-color: fuchsia;
+    //background-color: fuchsia;
   }
 }
 
@@ -130,7 +126,12 @@
 // ==========================================================================
 @include mixins.respond-to(ds){
   .factions{
-    background-color: deeppink;
+    //background-color: deeppink;
+    .content-factions{
+      .factions__title{
+        font-size: functions.font-size('5xl');
+      }
+    }
   }
 }
 
@@ -139,6 +140,16 @@
 // ==========================================================================
 @include mixins.respond-to(hd){
   .factions{
-    background-color: honeydew;
+    //background-color: honeydew;
+    margin: 4rem 18rem;
+    &__image{
+      //background-color: palegreen;
+      width: 50%;
+      height: 80vh;
+    }
+    .content-factions{
+      //background-color: orchid;
+      width: 50%;
+    }
   }
 }
