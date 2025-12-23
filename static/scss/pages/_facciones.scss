@@ -21,6 +21,14 @@
     height: 50vh;
     margin: functions.spacing('1') auto;
   }
+  .content-factions{
+    //background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: functions.spacing('8') functions.spacing('8');
+  }
   &__title{
     //background-color: tomato;
     text-align: center;
@@ -94,11 +102,12 @@
     }
     .content-factions{
       width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      //display: flex;
+      //flex-direction: column;
+      //justify-content: center;
+      //align-items: center;
       padding: 2rem;
+      margin:0;
     }
     &__title{
       //background-color: oldlace;

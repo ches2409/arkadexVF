@@ -1,5 +1,5 @@
 // ==========================================================================
-// PAGE - About
+// section - Factions
 // ==========================================================================
 
 @use '../base/variables';
@@ -7,68 +7,81 @@
 
 @use '../base/mixins';
 
-.about{
-  //background-color: red;
+.promo{
+  //background-color: palevioletred;
   display: flex;
   flex-direction: column;
-  width: 100vw;
   height: 100vh;
-  &__title{
-    //background-color: orangered;
-    text-align: center;
-    align-content: center;
-    font-size: functions.font-size('2xl');
-    font-family: variables.$font-primary;
-    color: variables.$accent-blue;
-    @include mixins.neon-text(variables.$accent-blue, 0.3);
-    padding: 0 functions.spacing('8');
-    width: 100%;
+  width: 100vw;
+    &__title{
+      //background-color: tomato;
+      font-size: functions.font-size('2xl');
+      font-family: variables.$font-primary;
+      color: variables.$accent-blue;
+      @include mixins.neon-text(variables.$accent-blue, 0.3);
+      text-align: center;
+      padding: functions.spacing('8');
+    }
+  &__containt{
+      //background-color: lightseagreen;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      margin: functions.spacing('8') functions.spacing('8');
   }
-  &__header{
-    //background-color: cadetblue;
-    padding: functions.spacing('8');
-    width: 100%;
-    .image_header{
-        background-image: url('/static/images/header_about.png');
+    &__header{
+      //background-color: cadetblue;
+      display: flex;
+      flex-direction: column;
+      padding: functions.spacing('8');
+      width: 100%;
+      height: 40vh;
+      .header_image{
+        background-image: url('/static/images/promo.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
         height: 70%;
-      }
-    .header_text{
-      //background-color: #27ae60;
-      text-align: center;
-      align-content: center;
-      color: variables.$accent-green ;
-      font-size: functions.font-size('lg');
-      padding-top: functions.spacing('8');
-    }
-  }
-  &__contain{
-    //background-color: blueviolet;
-    width: 100%;
-    .contain_text{
-      text-align: justify;
-      align-content: center;
-      padding: 0 functions.spacing('10');
-      .resaltes{
-        color: variables.$accent-blue;
+        //width: auto;
+        }
+      .header_text{
+        //background-color: #27ae60;
+        text-align: center;
+        align-content: center;
+        color: variables.$accent-green ;
+        font-size: functions.font-size('lg');
+        padding-top: functions.spacing('8');
       }
     }
     .contain_icon{
       //background-color: yellowgreen;
+      height: 10%;
+      display: flex;
       padding: functions.spacing('4') 0;
-      .icon_action{
-        margin-right: functions.spacing('2');
-      }
-      .text_action{
-        align-content: center;
-        padding-left: 0.5rem;
-        font-size: functions.font-size('2xl');
-      }
+        .icon_action{
+          //background-color: olive;
+          background-image: url('/static/images/registro2.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: right;
+          width: 40%;
+          height: 100%;
+          margin-right: functions.spacing('2');
+        }
+        .text_action{
+          //background-color: orange;
+          font-size: functions.font-size('2xl');
+          //text-align: justify;
+          align-content: center;
+          padding-left: 0.5rem;
+          height: 100%;
+          width: 70%;
+        }
     }
-  }
 }
+
 
 // ================================================================
 // ======================= MEDIA QUERIES ==========================
@@ -77,7 +90,7 @@
 // 360=>
 // ==========================================================================
 @include mixins.respond-to(xs){
-  .about{
+  .promo{
     //background-color: orangered;
 
   }
@@ -87,7 +100,7 @@
 // 414=>
 // ==========================================================================
 @include mixins.respond-to(sm){
-  .about{
+  .promo{
     //background-color: palegoldenrod;
   }
 }
@@ -96,7 +109,7 @@
 // 600=>
 // ==========================================================================
 @include mixins.respond-to(md){
-  .about{
+  .promo{
     //background-color: darkgreen;
   }
 }
@@ -105,24 +118,35 @@
 // 760=>
 // ==========================================================================
 @include mixins.respond-to(ws){
-  .about{
+  .promo{
+    //background-color: peru;
     flex-direction: row;
     flex-wrap: wrap;
     height: 50vh;
     &__title{
+      //background-color: palegreen;
       width: 100%;
       height: 20%;
       font-size: functions.font-size('3xl');
     }
-    &__header{
-      width: 40%;
-      height: 80%;
-      .image_header{
-      }
-    }
-    &__contain{
+    &__containt{
+      //background-color: lightseagreen;
       width: 60%;
       height: 80%;
+      margin: functions.spacing('0');
+      padding: 0 functions.spacing('8');
+    }
+    &__header{
+      //background-color: lightpink;
+      width: 40%;
+      height: 80%;
+      .header_image{
+      }
+    }
+    .contain_icon{
+      //background-color: yellowgreen;
+      width: 100%;
+      height: 20%;
     }
   }
 }
@@ -131,7 +155,7 @@
 // 920=>
 // ==========================================================================
 @include mixins.respond-to(lg){
-  .about{
+  .promo{
     //background-color: chartreuse;
   }
 }
@@ -140,21 +164,26 @@
 // 1366=>
 // ==========================================================================
 @include mixins.respond-to(xl){
-  .about{
+  .promo{
+    //background-color: navajowhite;
     &__title{
       font-size: functions.font-size('4xl');
     }
     &__header{
+      //background-color: lightseagreen;
       width: 40%;
-      padding-left:15rem;
+      padding-right: 15rem;
       justify-content: center;
-      .image_header{
-        height: 40%;
-      }
+        .header_image{
+            height: 40%;
+        }
     }
-    &__contain{
+    &__containt{
+      //background-color: seagreen;
       width: 60%;
+      padding-left: 10rem;
     }
+
   }
 }
 
@@ -162,7 +191,8 @@
 // 1440=>
 // ==========================================================================
 @include mixins.respond-to(ds){
-  .about{
+  .promo{
+    //background-color: lightcoral;
     &__title{
       font-size: functions.font-size('5xl');
     }
@@ -173,6 +203,7 @@
 // 1920=>
 // ==========================================================================
 @include mixins.respond-to(hd){
-  .about{
+  .promo{
+    //background-color: lightslategray;
   }
 }
