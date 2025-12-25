@@ -1,0 +1,182 @@
+// ==========================================================================
+// section - Factions
+// ==========================================================================
+
+@use '../base/variables';
+@use '../base/functions';
+
+@use '../base/mixins';
+
+.access{
+  //background-color: darkslateblue;
+  &__logo{
+    background-image: url('/static/images/logoHorizontal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 90%;
+    height: 10vh;
+    margin: functions.spacing('4') auto;
+  }
+  &__context{
+    //background-color: lightsalmon;
+    height: 90vh;
+    margin: 0 functions.spacing('8');
+    .context-header{
+      border-left: 10px solid functions.color('accent-green');
+      background: linear-gradient(90deg,rgba(185, 242, 61, 0.2) 0%, rgba(185, 242, 61, 0) 100%);
+      margin: functions.spacing('16') 0;
+      .title, .tag{
+        //background-color: teal;
+        margin: 0 functions.spacing('6');
+        text-align: center;
+      }
+      .title{
+        //background-color: rebeccapurple;
+        padding-top: functions.spacing('6');
+        font-size: functions.font-size('lg');
+        .resalte{
+          color: functions.color('accent-green');
+        }
+      }
+      .tag{
+        //background-color: rosybrown;
+        padding: functions.spacing('6') 0;
+      }
+    }
+    .context-body{
+      //background-color: thistle;
+      .tournament, .faction{
+        //background-color: forestgreen;
+        //display: flex;
+        align-items: center;
+
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: functions.spacing('4');
+        .icon{
+
+          //width: clamp(60px, calc((100% - #{functions.spacing('8')}) * 0.2), 80px);
+          //aspect-ratio: 1 / 1;
+          //height: auto;
+
+          width: clamp(58px, 6vw + 1rem, 78px);
+          aspect-ratio: 1 / 1;
+          height: auto;
+
+          justify-self: center;
+
+          background-color: functions.color('background-dark');
+          border: functions.color('background-soft') solid functions.spacing('1');
+          border-radius: 10%;
+
+          background-size: 70%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        .content{
+          //background-color: yellowgreen;
+          margin: functions.spacing('4') 0 functions.spacing('4') functions.spacing('4');
+
+          &__title, &__text{
+            //background-color: rebeccapurple;
+            display: block;
+          }
+
+          &__text{
+            //background-color: tan;
+            font-size: functions.font-size('sm');
+
+          }
+        }
+      }
+      .tournament .icon{
+        background-image: url("/static/images/elite_icon.png");
+      }
+
+      .faction .icon{
+        background-image: url("/static/images/faction_icon.png");
+      }
+    }
+
+  }
+}
+
+
+
+// ================================================================
+// ======================= MEDIA QUERIES ==========================
+// ================================================================
+// ==========================================================================
+// 360=>
+// ==========================================================================
+@include mixins.respond-to(xs){
+  .access{
+    //background-color: orangered;
+
+  }
+}
+
+// ==========================================================================
+// 414=>
+// ==========================================================================
+@include mixins.respond-to(sm){
+  .access{
+    //background-color: palegoldenrod;
+  }
+}
+
+// ==========================================================================
+// 600=>
+// ==========================================================================
+@include mixins.respond-to(md){
+  .access{
+    //background-color: darkgreen;
+  }
+}
+
+// ==========================================================================
+// 760=>
+// ==========================================================================
+@include mixins.respond-to(ws){
+  .access{
+    //background-color: blueviolet;
+  }
+}
+
+// ==========================================================================
+// 920=>
+// ==========================================================================
+@include mixins.respond-to(lg){
+  .access{
+    background-color: chartreuse;
+  }
+}
+
+// ==========================================================================
+// 1366=>
+// ==========================================================================
+@include mixins.respond-to(xl){
+  .access{
+    background-color: fuchsia;
+  }
+}
+
+// ==========================================================================
+// 1440=>
+// ==========================================================================
+@include mixins.respond-to(ds){
+  .access{
+    background-color: deeppink;
+  }
+}
+
+// ==========================================================================
+// 1920=>
+// ==========================================================================
+@include mixins.respond-to(hd){
+  .access{
+    background-color: honeydew;
+  }
+}
